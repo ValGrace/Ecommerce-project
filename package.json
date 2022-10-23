@@ -1,0 +1,27 @@
+{
+  "name": "ecom-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "csstype": "^3.0.9",
+    "hoist-non-react-statics": "^3.3.2",
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "object-assign": "^4.1.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-is": "^16.13.1",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
