@@ -1,5 +1,7 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
+import { useDispatch} from 'react-redux'
+import { addToCart } from '../../../redux/cartSlice'
 export const speakers = [
     {id: 43, descr:"Ortizan Portable Bluetooth Speaker, IPX7 Waterproof Wireless Speaker with 24W Loud Stereo Sound", image:"https://m.media-amazon.com/images/I/81qTTdKhiOL._AC_UY218_.jpg", price:15000, type:"volume"},
     {id:44, descr:"Edifier G2000 32W PC Computer Speakers for Gaming Desktop PC ", image:"https://m.media-amazon.com/images/I/618Y4gPJHOS._AC_UL640_QL65_.jpg", price:20000, type:"volume"},
@@ -17,10 +19,9 @@ export const speakers = [
 
 const SpeakersStore = ({id, descr, image, price}) => {
    
-
+    const dispatch = useDispatch()
     return (
         
-           
                 <div className="store-container" key={id}>
                     <div className="store-image">
                     <img src={image} alt={descr} />
@@ -29,7 +30,9 @@ const SpeakersStore = ({id, descr, image, price}) => {
                         <h3>{descr}</h3>
                         <div id="cart-section">
                         <h4><span>&#8358;</span>{price}</h4>
-                        <FaShoppingCart color="orange" size="2rem"/>
+                        <span onClick={() => dispatch(addToCart({
+                          id, descr, image, price
+                       }))}><FaShoppingCart color="orange" size="2rem"/></span>
                     </div>
                     </div>
                 </div>

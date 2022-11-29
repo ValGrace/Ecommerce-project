@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import MyFooterNav from './footerNavbar'
-import {FaShoppingBag, FaTrash, FaShoppingBasket } from 'react-icons/fa'
+import {FaShoppingBag, FaTrash } from 'react-icons/fa'
 import { Link} from 'react-router-dom'
 import image1 from '../StoreComponents/images/image1.png'
 import image2 from '../StoreComponents/images/image2.png'
@@ -128,9 +128,9 @@ const AllProductsPage = () => {
                                     <td>
                                         <h5>&#8358;{product.price}</h5>
                                     </td> 
-                                     <td>  
-                                       <Link to={"/checkout/"+product.descr+"/"+product.price+"/"+total}> <div><FaShoppingBasket  color="orangered"/></div></Link>
-                                        </td>
+                                     {/* <td>  
+                                       //<Link to={"/checkout/"+product.descr+"/"+product.price+"/"+total}> <div><FaShoppingBasket  color="orangered"/></div></Link>
+                                        </td> */}
                                     
                                     <td>  
                                         <div onClick={()=>removeFromCart(product)}><FaTrash color="orangered"/></div></td>
@@ -144,7 +144,7 @@ const AllProductsPage = () => {
                <div className="summary">
                    {renderCart()}
                    <p>Shipping information and tax will be in the checkout</p>
-                   <Link to={"/checkout/"+total}><button className="btn">Checkout</button></Link>
+                   {/* <Link to={"/checkout/"+total}><button className="btn">Checkout</button></Link> */}
                </div>
                
                </div>

@@ -5,7 +5,7 @@ import LaptopPage, {LaptopStore} from "./laptops";
 import GamingPage, {Controller} from "./gaming";
 import PlantsPage, {PlantsStore} from "./plants";
 import PhonesPage, {PhonesStore} from "./phones";
-
+import MyNavbar from "../../../components/navbar";
 const MyStore = () => {
     
     return (
@@ -28,6 +28,7 @@ const StoreProducts = () => {
     
     return (
         <>
+        <MyNavbar />
         <div className="fullStore">
                     <h1>Virtual Reality</h1>
                     {virtualStore.map((vritem)=>{

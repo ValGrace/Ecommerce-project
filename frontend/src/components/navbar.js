@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { BsPersonFill} from 'react-icons/bs'
@@ -9,7 +9,15 @@ const MyNavbar = () => {
     
   
     const [clickBar, setClickBar] = useState(false)
- 
+    const cart = useSelector((state) => state.cart)
+    
+    const getTotalProducts = () => {
+        let total = 0
+        cart.forEach(item =>{
+            total += item.quantity
+        })
+        return total
+    }
    
     return (
         <div className="top-bar">
@@ -32,7 +40,7 @@ const MyNavbar = () => {
             <div id="account">
                 {error && <p>{error}</p>}
                   <BsPersonFill />
-                <Link to="./checkout"><div style={{color: "orangered", marginLeft:"10px"}}><FiShoppingBag />  Bag</div></Link>
+                <Link to="checkout"><div style={{color: "orangered", marginLeft:"10px"}}><FiShoppingBag />{getTotalProducts() || 0}</div></Link>
                 {/* <h3>Sign In</h3>
                 <div className="btn-create-account">Create Account</div> */}
             </div>

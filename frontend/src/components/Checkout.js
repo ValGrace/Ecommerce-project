@@ -2,6 +2,10 @@ import React , {useState} from 'react'
 import { FaAngleDown, FaPaypal, FaCcVisa, FaAngleUp, FaCcMastercard } from 'react-icons/fa'
 import { FiSave } from 'react-icons/fi'
 import MyFooterNav from './footerNavbar'
+import { useSelector } from 'react-redux'
+import CartItem from './CartItem'
+import MyNavbar from './navbar'
+
 
 const CheckoutPage =(props) => {
     const [checkDetails, setCheckDetails] = useState(false)
@@ -11,19 +15,23 @@ const CheckoutPage =(props) => {
     const [expire, setExpire] = useState('')
     const [cvv, setCvv] = useState('')
     const [discount, setDiscount] = useState('')
-   
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [phone, setPhone] = useState('')
     const [checkSubmit, setCheckSubmit] = useState(false)
+
     const myClick = () => {
         setCheckDetails(!checkDetails)
     }
+    const cart = useSelector((state) => state.cart)
     const myClick2 = () => {
         setMakePayment(!makePayment)
     }
     const handleMySubmit = (event) => {
         event.preventDefault()
+        window.localStorage.setItem("phone-number", phone)
+        window.localStorage.setItem("firstName", first)
+        window.localStorage.setItem("lastName", last)
         setFirst('')
         setLast('')
         setPhone('')
@@ -35,8 +43,56 @@ const CheckoutPage =(props) => {
     const handleSubmitted = () => {
         setCheckSubmit(true)
     }
+
+    const callResponse = (e) => {
+        e.preventDefault()
+        const postResponse = {
+            method: 'POST',            
+            body: JSON.stringify({
+                phone: window.localStorage.getItem('phone-number'),
+                amount: window.localStorage.getItem('total-price')
+            }),
+            headers: {
+                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',             
+                'Content-Type': 'application/json',
+               
+            }
+        }
+        // fetch("http://localhost:5000/dev/mpesa")
+        // .then(res => res.text())
+        fetch('http://localhost:5000/dev/mpesa', postResponse)
+              .then(() => console.log('Data successfully sent'))
+              .catch(err => {
+               console.error(err)
+              })
+              
+    } 
+   
+    // useEffect(() => {
+    //     callResponse()
+    // })
+    const getTotal = () => {
+        let totalProducts = 0;
+        let totalPrice = 0
+        cart.forEach(item => {
+            totalProducts += item.quantity
+            totalPrice += item.price * item.quantity
+        })
+        window.localStorage.setItem("total-price", totalPrice)
+        return { totalPrice, totalProducts}
+    }
     return (
         <>
+        <MyNavbar />
+        <div className="cart__left">
+            <div>
+                <h3>Shopping cart</h3>
+                {cart?.map((item) => (
+                    <CartItem key={item.id}
+                    {...item} />
+                ))}
+            </div>
+        </div>
         <h2>Checkout</h2>
         <div className="gateway">
         <div className="shipping">
@@ -49,7 +105,7 @@ const CheckoutPage =(props) => {
                 <input type="text" id="firstName"  placeholder="John" style={{"content": "10rem"}} value={first} onChange={(e)=>setFirst(e.target.value)} required/>
                 <label htmlFor="laststName">Last Name</label>
                 <input type="text" id="lastName" placeholder="Doe" value={last} onChange={(e)=>setLast(e.target.value)} required/>
-                <textarea>Enter your shipping address</textarea><br />
+                
                 <label htmlFor="phone">Phone Number</label>
                 <input type="text" id="phone"  placeholder="xxx-xxxx-xxx" value={phone} onChange={(e)=>setPhone(e.target.value)} required/>
                 <button className="btn" type="submit" onClick={handleSubmitted}><FiSave />Save</button>
@@ -97,9 +153,11 @@ const CheckoutPage =(props) => {
             </div>
                 <div className="buyall">
                     <h5>Purchase all products in cart</h5>
-                <strong>Total &#8358;{props.match.params.total}</strong>
-                <button className="store-btn">Purchase</button>
+                <strong>Total ksh.{getTotal().totalPrice}</strong>
+                {/* <button className='store-btn' onClick={detailsConfirm}>Confirm Purchase</button> */}
+                <button className="store-btn" onClick={callResponse}>Buy With Mpesa</button>
                 </div>
+               {/* <p>{apiResponse}</p> */}
         </div>
         <footer><MyFooterNav /></footer>
         </>

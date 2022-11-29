@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
-
+import { useDispatch} from 'react-redux'
+import { addToCart } from '../../../redux/cartSlice'
 export const LaptopStore = [
     {id:84, descr:"Lenovo Chromebook S330 Laptop, 14-Inch FHD (1920 x 1080) Display, MediaTek MT8173C Processor, 4GB LPDDR3, 64GB eMMC, Chrome OS, 81JW0000US, Business Black", brand:"Lenovo", image:"https://m.media-amazon.com/images/I/61ViOMIUhmL._AC_UY218_.jpg", price:20600, type:"system"},
     {id:85, descr:"2021 Newest Dell Inspiron 15.6 HD Business Laptop, Intel Pentium Silver N5030, 16GB RAM, 1TB PCIe SSD, Online Meeting Ready, WiFi, Webcam, HDMI, Bluetooth, Win10 Pro", brand:"", image:"https://m.media-amazon.com/images/I/71mnsLl6+tS._AC_UY218_.jpg", price:69900, type:"system"},
@@ -21,7 +22,7 @@ export const LaptopStore = [
 ]
 
 const LaptopPage = ({id, descr, brand, image, price}) => {
-   
+   const dispatch = useDispatch()
     return (
         
                 <div className="store-container" key={id}>
@@ -34,7 +35,9 @@ const LaptopPage = ({id, descr, brand, image, price}) => {
                         <h4 id="branded">{brand}</h4>
                         <div id="cart-section">
                         <h4><span>&#8358;</span>{price}</h4>
-                       <FaShoppingCart color="orange" size="2rem"/>
+                       <span onClick={() => dispatch(addToCart({
+                          id, descr, image, price
+                       }))}><FaShoppingCart color="orange" size="2rem"/></span>
                     </div>
                     </div>
                     

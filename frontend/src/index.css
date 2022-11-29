@@ -217,7 +217,19 @@ input[type="search"] + p {
   text-align: start;
   color: #171718cc;
 }
+.btn-dispatch {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3em;
+}
+.redux-store-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-left: 0;
+  padding: 1.2em;
 
+}
 #options {
   display: flex;
   flex-direction: row;
@@ -417,6 +429,7 @@ input[type="search"] + p {
 
 .store-content > h3 {
   color: rgba(36, 35, 35, 0.856);
+  font-size: 1rem;
 }
 .store-image {
   width: 40%;
@@ -499,6 +512,15 @@ article {
   color: white;
   justify-content: end;
 }
+.redux-store-btn {
+  background-color: rgb(220, 83, 20);
+  width: auto; 
+  height:1.2em;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  justify-content: end;
+}
 
 footer {
   width: 100vw;
@@ -525,7 +547,9 @@ footer {
   height: 2.2rem;
   border-radius: 10px;
   background-color: rgba(122, 122, 122, 0.274);
-  margin: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .header {
   position: relative;
@@ -833,6 +857,15 @@ table tr {
   }
 }
 
+@media screen and (max-width: 990px) {
+  .store-container {
+    width: 90vw;
+  }
+
+  .store-content {
+    font-size: 0.9rem;
+  }
+}
 @media screen and (max-width: 650px) {
   .fullStore {
     min-width: 300px;

@@ -4,7 +4,7 @@ import LoginPage from './Login'
 import SignupPage from './Signup'
 import ConfirmPassWord from './ChangePass'
 import MyDashBoard from './Dashboard'
-import MyNavbar from './navbar'
+// import MyNavbar from './navbar'
 import MyStore from '../StoreComponents/images/StorePages/StoreContainer'
 import { AuthProvider } from '../Context/AuthContext'
 import AllProductsPage from './AllProducts';
@@ -24,11 +24,14 @@ const EntryPage = () => {
             <Switch>
                  
                 
-                <Route exact path="/checkout/:total" component={CheckoutPage} />
-                <Route path="/checkout/:descr/:price/:total" component={CheckoutPage} />
-                
             </Switch>
-            
+            <AuthProvider>
+                <Switch>
+            <Route path="/login" component={LoginPage} />  
+               <Route exact path="/" component={SignupPage} />
+               <Route path="/changepasscode" component={ConfirmPassWord} />
+               </Switch>
+            </AuthProvider>
              <AuthProvider>
             <Switch>
                 <Route path="/dash" component={MyDashBoard} />
@@ -37,15 +40,8 @@ const EntryPage = () => {
                  {/* <Route path="/product" component={MakePurchase} /> */}
                  <Route exact path="/prod" component={AllProductsPage} />  
                  <Route path="/airtime" component={Airtime} />
-                
-                <div className="container">
-                   
-                  
-              <Route path="/login" component={LoginPage} />  
-               <Route exact path="/" component={SignupPage} />
-               <Route path="/changepasscode" component={ConfirmPassWord} />
+                 <Route exact path="/checkout" component={CheckoutPage} />
                
-               </div>
             </Switch>
             </AuthProvider>
        

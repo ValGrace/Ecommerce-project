@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useDispatch} from 'react-redux'
+import { addToCart } from '../../../redux/cartSlice'
+
 export const PlantsStore = [
     {id:55, descr:"Whonline 1 Pack Artificial Hanging Plants", image:"https://m.media-amazon.com/images/I/71L7TLkkUfS._AC_UL320_.jpg", price:2300, type:"decor"},
     {id:56, descr:"Whonline 2pcs Artificial Mini Potted Plants Fake", image:"https://m.media-amazon.com/images/I/81IwR0w4yjL._AC_UL320_.jpg",price:5000, type:"decor"},
@@ -15,7 +17,7 @@ export const PlantsStore = [
 ]
 
 const PlantsPage = ({id, descr, image, price}) => {
-   
+    const dispatch = useDispatch()
     return (
         
         
@@ -26,8 +28,10 @@ const PlantsPage = ({id, descr, image, price}) => {
                     <div className="store-content">
                     <h3>{descr}</h3>
                     <div id="cart-section">
-                        <h4><span>&#8358;</span>{price}</h4>
-                        <Link to={"/purchase/"+id+"/"+descr+"/"+price+""+image}><FaShoppingCart color="orange" size="2rem"/></Link>
+                        <h4><span>ksh. </span>{price}</h4>
+                        <span onClick={() => dispatch(addToCart({
+                          id, descr, image, price
+                       }))}> <FaShoppingCart color="orange" size="2rem"/></span>
                     </div>
                     
                     </div>

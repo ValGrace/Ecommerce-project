@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
-
+import { useDispatch} from 'react-redux'
+import { addToCart } from '../../../redux/cartSlice'
 export const PhonesStore = [
     {id:65, descr:"SAMSUNG Galaxy S8 G950U 64GB Unlocked GSM U.S. Version Phone - w/ 12MP Camera - Orchid Gray ", brand:"Samsung",image:"https://m.media-amazon.com/images/I/31JmJT2qy6L._AC_UY218_.jpg", price:17500, type:"iphone"},
     {id:66, descr:"Samsung Galaxy S21 5G G9910 128GB 8GB RAM International Version - Phantom Gray", brand:"Samsung",image:"https://m.media-amazon.com/images/I/51eWHdtNfYL._AC_UY218_.jpg", price:79900, type:"iphone"},
@@ -24,7 +25,7 @@ export const PhonesStore = [
 ]
 
 const PhonesPage = ({ id, descr, brand, image, price}) => {
-    
+    const dispatch = useDispatch()
     return (
         
                 <div className="store-container" key={id}>
@@ -37,7 +38,9 @@ const PhonesPage = ({ id, descr, brand, image, price}) => {
                         <h4 id="branded">{brand}</h4>
                         <div id="cart-section">
                         <h4><span>&#8358;</span>{price}</h4>
-                        <FaShoppingCart color="orange" size="2rem"/>
+                        <span onClick={() => dispatch(addToCart({
+                          id, descr, image, price
+                       }))}><FaShoppingCart color="orange" size="2rem"/></span>
                     </div>
                     </div>
                 </div>

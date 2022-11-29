@@ -1,5 +1,7 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
+import { useDispatch} from 'react-redux'
+import { addToCart } from '../../../redux/cartSlice'
 export const VirtualReality = [
     {id:20, name:"RealityTech",types:"Non-immersive Virtual Reality", image:"https://images.unsplash.com/photo-1617802690992-15d93263d3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80", price:70000, descr:"Oculus Quest 2 — Advanced All-In-One Virtual Reality Headset — 128 GB", type:"virtual"},
     {id:21, name:"VR Now", types:"Fully-immersive Virtual Reality", image:"https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60", price:100000, descr:"Oculus Quest All-in-one VR Gaming Headset – 64GB ", type:"virtual"},
@@ -18,7 +20,7 @@ export const VirtualReality = [
 
 const RealityPage = ({id, name, types, image, descr, price}) => {
    
-
+    const dispatch = useDispatch()
     return (
        
        
@@ -34,7 +36,9 @@ const RealityPage = ({id, name, types, image, descr, price}) => {
                         </div>
                         <div id="cart-section">
                         <h4><span>&#8358;</span>{price}</h4>
-                        <div id="shopcart"><FaShoppingCart color="orange" size="2rem"/></div>
+                        <div id="shopcart"><span onClick={() => dispatch(addToCart({
+                            id, descr, image, price
+                        }))}><FaShoppingCart color="orange" size="2rem"/></span></div>
                         </div>
                         
                     </div>

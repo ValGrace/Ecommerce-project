@@ -12,8 +12,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import MyNavbar from './navbar'
 const MyDashBoard = () => {
-    const [searchItem, setSearchItem] = useState('')
+    // const [searchItem, setSearchItem] = useState('')
     const [bestProducts] = useState(BestItems)
     const [chooseItem] = useState(categories)
     const [newDeals] = useState(topdeals)
@@ -28,6 +29,7 @@ const MyDashBoard = () => {
     // }
     return (
         <>
+        <MyNavbar />
            <div className="welcome-section">
                <div className="intro">Buy The Best Products At Affordable Prices</div>
                <Paper
