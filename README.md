@@ -2,11 +2,28 @@
 
 anypay is an ecommerce online store with a range of products for sale
 ## Features
-- User authentication using redux
+- User authentication using firebase
+
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-signup.PNG)
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-login.PNG)
+
+- Homepage
+
+- ![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-home.PNG)
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-home2.PNG)
 - Product store with a range of products
+
+- ![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-vrs.PNG)
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-phones.PNG)
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-plnts.PNG)
+
 - User can purchase airtime
 - Product cart powered by redux
+
 - Checkout functionality from an express serverless backend
+
+- ![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-checkout.PNG)
+![image](https://github.com/ValGrace/Ecommerce-project/blob/main/frontend/public/static/media/ecom-checkout2.PNG)
 
 ### Steps to run this project:
 - Clone the project using git clone  
