@@ -9,27 +9,38 @@ import MyStore from '../StoreComponents/images/StorePages/StoreContainer'
 import { AuthProvider } from '../Context/AuthContext'
 import AllProductsPage from './AllProducts';
 import Airtime from './Buy Airtime'
+import Orders from "../Admin/Pages/Orders"
+
+import Inventory from "../Admin/Pages/Inventory";
+import Customers from "../Admin/Pages/Customers";
+import AdminHome from "../Admin/Pages/AdminHome";
 // import PrivateRoute from '../Context/PrivateRoute'
 
-import CheckoutPage from '../components/Checkout'
-
+import CheckoutPage from "./Checkout"
 
 const EntryPage = () => {
     
     return (
         
         <div className="landing-page">
-            
-               
-            <Switch>
-                 
+            <AuthProvider>
+           <Switch>
                 
-            </Switch>
+                   <Route path="/admin" component={AdminHome} />
+                   <Route path="/inventory" component={Inventory} />
+                   <Route path="/customers" component={Customers} />
+                   <Route path="/orders" component={Orders} /> 
+                </Switch>
+                </AuthProvider>
             <AuthProvider>
                 <Switch>
             <Route path="/login" component={LoginPage} />  
                <Route exact path="/" component={SignupPage} />
                <Route path="/changepasscode" component={ConfirmPassWord} />
+               {/* <div className="page-content"> */}
+                    
+                    
+                   
                </Switch>
             </AuthProvider>
              <AuthProvider>

@@ -30,7 +30,7 @@ const MakePurchase = (props) => {
         </div>
         <div className="content-container">
         <h2>{props.match.params.descr}</h2>
-        <h3>Price: <span >&#8358;</span>{props.match.params.price}</h3>
+        <h3>Price: <span >ksh. </span>{props.match.params.price}</h3>
         <h4>Color Options</h4>
         <div className="color-options">
             <button className="btn-color red"></button>
@@ -86,7 +86,7 @@ const MakePurchase = (props) => {
                            <div id="top"><div id="top-price">{deal}</div><span><FiShoppingBag /></span></div>
                            <img src={image} alt={descr} />
                            <h5>{descr}</h5>
-                           <h4><span >&#8358;</span>{price} </h4>
+                           <h4><span >ksh. </span>{price} </h4>
 
                            </div>
                    )

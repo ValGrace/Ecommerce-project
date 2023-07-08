@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaShoppingBag } from 'react-icons/fa'
 import { useDispatch} from 'react-redux'
 import { addToCart } from '../../../redux/cartSlice'
 export const Controller = [
@@ -23,21 +23,37 @@ const GamingPage = ({id, descr, brand, image, price}) => {
     
     const dispatch = useDispatch()
     return (
+        <>
+        <div className="singleDeal" key={id}>
+                           <div id="top">
+                               
+                           <div id="top-price"></div>
+                            <div onClick={() =>dispatch(addToCart({id, descr, image, price}))} className="shoppingbag"><FaShoppingBag/></div></div>
+                            
+                           <img src={image} alt={descr} />
+                           
+                           
+                           <h5>{descr}</h5>
+                           <h5><span >ksh </span>{price}</h5>
+                           
+                          
+                           </div>
+        </>
         
-                <div className="store-container" key={id}> 
-                    <div className="store-image">
-                        <img src={image} alt={descr} />
-                    </div>
-                    <div className="store-content">
-                        <h3>{descr}</h3>
-                        <div id="cart-section">
-                        <h4><span>ksh</span>{price}</h4>
-                        <span onClick={() => dispatch(addToCart({
-                            id, descr, image, price
-                        }))}><FaShoppingCart color="orange" size="2rem"/></span>
-                    </div>
-                    </div>
-                </div>
+                // <div className="store-container" key={id}> 
+                //     <div className="store-image">
+                //         <img src={image} alt={descr} />
+                //     </div>
+                //     <div className="store-content">
+                //         <h3>{descr}</h3>
+                //         <div id="cart-section">
+                //         <h4><span>ksh</span>{price}</h4>
+                //         <span onClick={() => dispatch(addToCart({
+                //             id, descr, image, price
+                //         }))}><FaShoppingCart color="orange" size="2rem"/></span>
+                //     </div>
+                //     </div>
+                // </div>
             )
      
        

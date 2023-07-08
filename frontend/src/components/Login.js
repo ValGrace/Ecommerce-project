@@ -41,7 +41,7 @@ const LoginPage = () => {
                 <Link to="/changepasscode" style={{"color": "#ff782d"}}>Forgot password</Link>
                 <button type="submit" className="btn">Sign In</button>
             </form>
-            <p>New to AnyPay.<Link to='/' style={{"color": "#ff782d"}}>Create Account</Link></p>
+            <p>New to AnyPay.  <Link to='/' style={{"color": "#ff782d"}}>Create Account</Link></p>
         
         </div>
     )

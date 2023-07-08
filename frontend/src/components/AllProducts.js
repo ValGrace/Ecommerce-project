@@ -18,7 +18,8 @@ import image5 from '../StoreComponents/images/image 8.png'
 import image6 from '../StoreComponents/images/image 15.png'
 import image7 from '../StoreComponents/images/image 2.png'
 import image8 from '../StoreComponents/images/image 9.png'
-
+import { Avatar, Table } from 'antd'
+import MyNavbar from './navbar'
 const PAGE_PRODUCTS = 'products'
 const PAGE_CART = 'cart'
 const AllProductsPage = () => {
@@ -43,19 +44,19 @@ const AllProductsPage = () => {
     const [total, setTotal] = useState(0)
      const [cart, setCart] = useState([])
      const [page, setPage] = useState(PAGE_PRODUCTS)
-    
+    //  const [calcTotal, setCalcTotal] = useState(0)
        const renderCart = () => {
         return (
         <>
         <h3>Order Summary</h3>
                    <div id="totals">
-                       <h4>Total/Items</h4>
+                       <h4>Total Items</h4>
                        <strong><span >&#8358;</span>{total}/{cart.length}</strong>
                    </div>
         </>
         )
     }
-    const addToCart = (product) => {
+    const addToCarts = (product) => {
         console.log('we are in addTocart')
         setCart([...cart,{...product}])
         console.log(cart)
@@ -63,8 +64,12 @@ const AllProductsPage = () => {
     }
    
     const removeFromCart = (productToRemove) => {
-       setCart(cart.filter((product) => product !== productToRemove))
-       setTotal(total => total -productToRemove.price)
+       setCart(cart.filter((product) => product.id !== productToRemove))
+       console.log(productToRemove.price)
+    //    setCalcTotal(cart.map((product) => {
+    //     return calcTotal + product.price
+    // }))
+    // setTotal(calcTotal)
     }
   
     const navigateTo = (nextPage) => {
@@ -72,6 +77,7 @@ const AllProductsPage = () => {
     }
     return (
        <>
+       <MyNavbar />
        <header>
         <button onClick={()=> navigateTo(PAGE_CART)}><FaShoppingBag size="2rem"/>{cart.length}</button>
         <button onClick={()=> navigateTo(PAGE_PRODUCTS)} className="store-btn">View Products </button>
@@ -86,7 +92,7 @@ const AllProductsPage = () => {
                            <div id="top">
                                
                            <div id="top-price">{product.deal}</div>
-                            <div onClick={()=>addToCart(product)} className="shoppingbag"><FaShoppingBag /></div></div>
+                            <div onClick={()=>addToCarts(product)} className="shoppingbag"><FaShoppingBag /></div></div>
                             
                            <img src={product.image} alt={product.descr} />
                            
@@ -102,45 +108,45 @@ const AllProductsPage = () => {
                 
                {page === PAGE_CART && <div className="deals-container cartproducts">
                <h2>Cart</h2>
-               <div id="flexing">
-               <table>
-                   <thead>
-                                   <th>
-                                   <td>Product</td>
-                                   <td>Description</td>
-                                   <td>Price</td>
-                                   <td>Purchase</td>
-                                   <td>Delete</td>
+               <Table
+               columns={[
+                {
+                    title: "Thumbnail",
+                    dataIndex: "image",
+                    render: (link) => {
+                        return <Avatar src={link} />
+                    }
+                },
+                {
+                    title: "Product",
+                    dataIndex: "descr"
+                },
+                {
+                    title: "Price",
+                    dataIndex: "price"
+                    
+                },
+                { 
+                    title: "Delete",
+                    dataIndex: "id",
+                    render: (product) => {
+                        return <div onClick={() => removeFromCart(product)}>
+                          <FaTrash color='orangered' /> 
+                        </div>
+                    }
+                }
+                
+               ]}
+               dataSource={cart}
+               pagination={{
+                pageSize: 5,
+               }}
+               
+               >
 
-                                   </th>
-                     </thead>          
-               {cart.map((product, idx)=>{ 
-                   return (
-                       <div className="sinleDeal"key={idx}>
-                               <tbody>
-                                   <tr>
-                                       <td id="imgnprod">
-                                       <img src={product.image} alt={product.descr} width="100%" height="100%"/>
-                                       </td>
-                                       <td>
-                                       <h5>{product.descr}</h5>
-                                    </td>
-                                    <td>
-                                        <h5>&#8358;{product.price}</h5>
-                                    </td> 
-                                     {/* <td>  
-                                       //<Link to={"/checkout/"+product.descr+"/"+product.price+"/"+total}> <div><FaShoppingBasket  color="orangered"/></div></Link>
-                                        </td> */}
-                                    
-                                    <td>  
-                                        <div onClick={()=>removeFromCart(product)}><FaTrash color="orangered"/></div></td>
-                                    </tr>
-                               </tbody>
-                           </div>
-                   )
-                   
-               })}
-               </table>
+               </Table>
+               <div id="flexing">
+              
                <div className="summary">
                    {renderCart()}
                    <p>Shipping information and tax will be in the checkout</p>

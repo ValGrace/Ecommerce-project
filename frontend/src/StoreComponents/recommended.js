@@ -59,10 +59,10 @@ export const laptops = [
 ]
 
 export const phones = [
-    {id: 124, image:image13, descr:"Tecno Camon Premier 15", price:45000, dec:""},
-    {id: 124, image:image14, descr:"Apple Iphone 11 256GB", price:350000, dec:""},
-    {id: 124, image:image15, descr:"Samsung Galaxy A11", price:72000, dec:"13% OFF"},
-    {id: 124, image:image16, descr:"Apple Iphone 13 Pro Max", price:450000, dec:"40% OFF"}
+    {id: 124, image:image13, descr:"Tecno Camon Premier 15", price:15000, dec:"13% OFF"},
+    {id: 125, image:image14, descr:"Apple Iphone 11 256GB", price:95000, dec:"13% OFF"},
+    {id: 126, image:image15, descr:"Samsung Galaxy A11", price:72000, dec:"13% OFF"},
+    {id: 127, image:image16, descr:"Apple Iphone 13 Pro Max", price:102000, dec:"40% OFF"}
 ]
 
 export default BestItems

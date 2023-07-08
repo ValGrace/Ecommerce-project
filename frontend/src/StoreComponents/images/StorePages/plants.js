@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaShoppingBag } from 'react-icons/fa'
 import { useDispatch} from 'react-redux'
 import { addToCart } from '../../../redux/cartSlice'
 
@@ -9,7 +9,7 @@ export const PlantsStore = [
     {id:57, descr:"2 Pack Fake Plants Artificial Potted Faux Plants", image:"https://m.media-amazon.com/images/I/71OoYyaIhoL._AC_UL320_.jpg",price:7000, type:"decor"},
     {id:58, descr:"Small Fake Plants Artificial Potted Faux", image:"https://m.media-amazon.com/images/I/81adbe1ez+S._AC_UL320_.jpg",price:4359, type:"decor"},
     {id:59, descr:"Fake Plants Mini Potted Artificial Plants Real Looking Plastic Fiddle Leaf Plantas", image:"https://m.media-amazon.com/images/I/51IPyzMJwUS._AC_SR160,160_.jpg",price:5000, type:"decor"},
-    {id:60, descr:"Artificial Plants in Boho Style Ceramic Pot, 2 Packs of 11 Tall Faux Potted Plants in Pots with Monstera and Palm Trees, Small Fake Plants with Pot for Indoor Home Office Bathroom Table Desk ", image:"https://m.media-amazon.com/images/I/51DFOLSOZhS._AC_SR160,160_.jpg",price:7900, type:"decor"},
+    {id:60, descr:"Artificial Plants in Boho Style Ceramic Pot", image:"https://m.media-amazon.com/images/I/51DFOLSOZhS._AC_SR160,160_.jpg",price:7900, type:"decor"},
     {id:61, descr:"Mini Potted Plants Artificial Eucalyptus plants", image:"https://m.media-amazon.com/images/I/51EiyhHD4mS._AC_SR160,160_.jpg",price:5643, type:"decor"},
     {id:62, descr:"Nearly Natural 43in. Dracaena Silk", image:"https://m.media-amazon.com/images/I/51uzeeezLvS._AC_SR160,160_.jpg",price:8794, type:"decor"},
     {id:63, descr:"Costa Farms Money Tree Pachira, Medium Ships", image:"https://m.media-amazon.com/images/I/41fjvTErn2S._AC_SR160,160_.jpg",price:6900, type:"decor"},
@@ -19,23 +19,39 @@ export const PlantsStore = [
 const PlantsPage = ({id, descr, image, price}) => {
     const dispatch = useDispatch()
     return (
+        <>
+        <div className="singleDeal" key={id}>
+                           <div id="top">
+                               
+                           <div id="top-price"></div>
+                            <div onClick={() =>dispatch(addToCart({id, descr, image, price}))} className="shoppingbag"><FaShoppingBag/></div></div>
+                            
+                           <img src={image} alt={descr} />
+                           
+                           
+                           <h5>{descr}</h5>
+                           <h5><span >ksh </span>{price}</h5>
+                           
+                          
+                           </div>
+        </>
         
         
-                <div className="store-container" key={id} >
-                    <div className="store-image">
-                    <img src={image} alt={descr} />
-                    </div>
-                    <div className="store-content">
-                    <h3>{descr}</h3>
-                    <div id="cart-section">
-                        <h4><span>ksh. </span>{price}</h4>
-                        <span onClick={() => dispatch(addToCart({
-                          id, descr, image, price
-                       }))}> <FaShoppingCart color="orange" size="2rem"/></span>
-                    </div>
+                // <div className="store-container" key={id} >
+                //     <div className="store-image">
+                //     <img src={image} alt={descr} />
+                //     </div>
+                //     <div className="store-content">
+                //     <h3>{descr}</h3>
+                //     <div id="cart-section">
+                //         <h4><span>ksh. </span>{price}</h4>
+                //         <span onClick={() => dispatch(addToCart({
+                //           id, descr, image, price
+                //        }))}> <FaShoppingCart color="orange" size="2rem"/></span>
+                //     </div>
                     
-                    </div>
-                </div>
+                //     </div>
+                // </div>
             )
        
     

@@ -7,12 +7,14 @@ import vrguy from '../StoreComponents/images/image5.png'
 import { Link } from 'react-router-dom'
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth} from '../Context/AuthContext'
 import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
+import { productdata } from '../StoreComponents/images/StorePages/StoreContainer'
 import MyNavbar from './navbar'
+import {useHistory} from 'react-router-dom'
 const MyDashBoard = () => {
     // const [searchItem, setSearchItem] = useState('')
     const [bestProducts] = useState(BestItems)
@@ -22,11 +24,25 @@ const MyDashBoard = () => {
     const [shopLaptops] = useState(laptops)
     const [shopPhones] = useState(phones)
     const [rechargePhone] = useState(recharge)
-  
+    const { currentUser } = useAuth() 
+    const navigate = useHistory()
+    const [searchResults, setSearchResults] = useState([])
+    const [searchInput, setSearchinput] = useState()
+    const [mapLimit, setMapLimit] = useState(3)
+    const searchItems = (searchTerm) => {
+        setSearchinput(searchTerm)
+        console.log(productdata)
+       const filteredData = productdata.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+       })
+       setSearchResults(filteredData)
+       console.log(searchResults)
+    }
     // const addToCart = (topdeals) => {
     //     console.log('we are in addTocart')
     //     setCart([...cart, topdeals])
     // }
+    if (currentUser) {
     return (
         <>
         <MyNavbar />
@@ -43,30 +59,44 @@ const MyDashBoard = () => {
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search Products"
         inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={e => searchItems(e.target.value)}
       />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+      <IconButton type="button" sx={{ p: '10px' }} 
+      aria-label="search"
+      onClick={searchItems}
+      >
         <SearchIcon />
       </IconButton>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
-        <DirectionsIcon />
-      </IconButton>
+      
     </Paper>
-               {/* <label htmlFor="searching"></label>
-               <input type="search" id="search" value={searchItem} onChange={(e)=> setSearchItem(e.target.value)} placeholder="Search Product"/> */}
-               
+                             
                <h3>Recommended for you</h3>
+              {searchInput ? <div className="product">
+                  {searchResults.slice(0, mapLimit).map((item, idx)=> {
+                    const { image, descr, price} = item
+                    return (
+                        <div className='product-item' key={idx}>
+                            <p style={{display:"grid", gridTemplateColumns:"100%", position:'relative', right:'0'}}> <FiShoppingBag size="1.3em"/></p>
+                               <img src={image} alt={descr} width="100%" height="50%" id="recimg"/>
+                               <div className="descr">
+                               <p>{descr}</p>
+                               <h4><span >ksh. </span>{price}</h4>
+                            </div>
+                            </div>
+                    )
+                  })}      
+              </div>:
                <div className="product">
                
                    {bestProducts.map((item, idx)=>{
                        const { image, descr, price} = item
                        return (
-                           <div className="product-item"key={idx}>
+                           <div className="product-item" key={idx}>
                                <p style={{display:"grid", gridTemplateColumns:"100%", position:'relative', right:'0'}}> <FiShoppingBag size="1.3em"/></p>
                                <img src={image} alt={descr} width="100%" height="50%" id="recimg"/>
                                <div className="descr">
                                <p>{descr}</p>
-                               <h4><span >&#8358;</span>{price}</h4>
+                               <h4><span >ksh. </span>{price}</h4>
                                 
                                
                                </div>
@@ -74,6 +104,7 @@ const MyDashBoard = () => {
                        )
                    })}
                </div>
+    }
             </div>
            <div className="recharge">
              <h2>Recharge your phone</h2>
@@ -115,7 +146,7 @@ const MyDashBoard = () => {
                            <div id="top"><div id="top-price">{deal}</div><span><FiShoppingBag /></span></div>
                            <img src={image} alt={descr} />
                            <h5>{descr}</h5>
-                           <h4><span >&#8358;</span>{price} </h4>
+                           <h4><span >ksh. </span>{price} </h4>
 
                            </div>
                    )
@@ -135,7 +166,7 @@ const MyDashBoard = () => {
                             <div className="singleGame gameSingle" key={id}>
                                 <img src={image} alt={descr} />
                                 <h3>{descr}</h3>
-                                <h4><span >&#8358;</span>{price}</h4>
+                                <h4><span >ksh. </span>{price}</h4>
                             </div>
                         )
                     })}
@@ -158,7 +189,7 @@ const MyDashBoard = () => {
                             <div className="singleGame gameSingle" key={id}>
                                 <img src={image} alt={descr} />
                                 <h3>{descr}</h3>
-                                <h4><span >&#8358;</span>{price}</h4>
+                                <h4><span >ksh. </span>{price}</h4>
                             </div>
                         )
                     })}
@@ -175,10 +206,10 @@ const MyDashBoard = () => {
                         const {id,image, descr, price, dec} = phone
                         return (
                             <div className="singleGame gameSingle" key={id}>
-                                <div>{dec}</div>
+                                <div id="top-price">{dec}</div>
                                 <img src={image} alt={descr} />
                                 <h3>{descr}</h3>
-                                <h4><span >&#8358;</span>{price}</h4>
+                                <h4><span> ksh. </span>{price}</h4>
                             </div>
                         )
                     })}
@@ -188,5 +219,11 @@ const MyDashBoard = () => {
 
         </>
     )
+                }
+                else {
+                    return (
+                       navigate.push('/')
+                    )
+                }
 }
 export default MyDashBoard

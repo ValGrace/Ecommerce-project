@@ -24,7 +24,7 @@ const MyNavbar = () => {
             <div id="navbar">
             <div id="bar" onClick={()=>setClickBar(!clickBar)}>{clickBar ?<> <FaTimes size="2.4rem" color="orangered" /><div id="nav-pages">
                 <Link to="/dash" className="mylink"><h3>Home</h3></Link>
-                <Link to="/prod" className="mylink"><h3>Shop</h3></Link>
+                <Link to="/mystore" className="mylink"><h3>Shop</h3></Link>
                 <Link to="/airtime" className="mylink"><h3>Buy Airtime</h3></Link>
             </div></>:<FaBars size="2.4rem" color="orangered"/>}</div>
             
@@ -33,7 +33,7 @@ const MyNavbar = () => {
             </div>
             <div id="pages">
                 <Link to="/dash" className="mylink"><h3>Home</h3></Link>
-                <Link to="/prod" className="mylink"><h3>Shop</h3></Link>
+                <Link to="/mystore" className="mylink"><h3>Shop</h3></Link>
                 <Link to="/airtime" className="mylink"><h3>Buy Airtime</h3></Link>
             </div>
             
