@@ -30,7 +30,7 @@ const MyFooterNav = () => {
                  <h1>Newsletter</h1>
                  <p>Get more information about AnyPay and More Updates</p>
                  <form className="form-wrapper cf">
-                 <Paper id="subemail"
+                 <Paper
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "80%" }}
     >
@@ -41,8 +41,8 @@ const MyFooterNav = () => {
         inputProps={{ 'aria-label': 'search google maps' }}
         
       />
-      <Button variant="contained" sx={{backgroundColor: 'orangered'}}>
-  Subscribe
+      <Button variant="contained" color="success">
+  Success
 </Button>
       {/* <IconButton type="button" sx={{ p: '10px' }} 
       aria-label="search"
@@ -52,10 +52,13 @@ const MyFooterNav = () => {
       </IconButton> */}
       
     </Paper>
-                
+                 <label htmlFor="subemail">
+                     <input type="email" id="subemail"/>
+                     <span></span>
+                 </label>
                  </form>
              </div>
-             
+             <hr/>
         </>
     )
 }

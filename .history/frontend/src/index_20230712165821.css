@@ -635,7 +635,6 @@ footer {
   background-color: var(--changeColor);
   border-radius: 20px;
   margin-bottom: 20px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 .quantity > div {
   width: 4rem;
@@ -651,7 +650,7 @@ footer {
   border-radius: 5%;
   flex-direction: column;
   justify-content: center;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+
   padding: 30px;
 }
 .shipping1,

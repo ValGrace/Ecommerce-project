@@ -161,7 +161,7 @@ const CheckoutPage =(props) => {
         </div>
         <footer>
             <MyFooterNav />
-            <hr className='hr-footer'></hr>
+            <hr></hr>
             </footer>
         </>
     )

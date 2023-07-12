@@ -116,7 +116,7 @@ const CheckoutPage =(props) => {
         </div>
         <div className="payment">
             <div className="payment1">
-            <h3>Payment method</h3>
+            <h1>Payment method</h1>
             <div onClick={myClick2}>{makePayment ? <FaAngleUp />:<FaAngleDown />}</div>
             </div>
             <div className="methods">
@@ -159,10 +159,7 @@ const CheckoutPage =(props) => {
                 </div>
                {/* <p>{apiResponse}</p> */}
         </div>
-        <footer>
-            <MyFooterNav />
-            <hr className='hr-footer'></hr>
-            </footer>
+        <footer><MyFooterNav /></footer>
         </>
     )
 }

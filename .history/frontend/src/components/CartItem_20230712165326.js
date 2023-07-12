@@ -24,9 +24,8 @@ function CartItem({id, image, descr, price, quantity=0}) {
                         
                         </div>
                         <Button onClick={() => dispatch(removeItem(id))} color="orangered">Remove  <FaTrash color="orangered"/></Button>
-                        <h4><span>Ksh. </span>{price}</h4>
                         </div>
-                        
+                        <h4><span>Ksh. </span>{price}</h4>
                         </div>
     )
 } 

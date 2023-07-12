@@ -14,7 +14,7 @@ function CartItem({id, image, descr, price, quantity=0}) {
                         
                         <h3>{descr}</h3>  
                         <div id="cart-section">                     
-                        
+                        <h4><span>Ksh. </span>{price}</h4>
                         <div className="btn-dispatch">
                             <Button shape="circle" onClick={() => dispatch(decrementQuantity(id))}><FaMinus color="orangered"/></Button>
                             <span>{quantity}</span>
@@ -24,9 +24,7 @@ function CartItem({id, image, descr, price, quantity=0}) {
                         
                         </div>
                         <Button onClick={() => dispatch(removeItem(id))} color="orangered">Remove  <FaTrash color="orangered"/></Button>
-                        <h4><span>Ksh. </span>{price}</h4>
                         </div>
-                        
                         </div>
     )
 } 

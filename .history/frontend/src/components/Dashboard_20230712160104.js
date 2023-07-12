@@ -215,10 +215,7 @@ const MyDashBoard = () => {
                     })}
                 </div>
                </div>
-               <footer className="welcome">
-                <MyFooterNav />
-                <hr className='hr-footer'/>
-                </footer>
+               <footer className="welcome"><MyFooterNav /></footer>
                
         </>
     )

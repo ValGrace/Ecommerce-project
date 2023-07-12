@@ -314,7 +314,6 @@ input[type="search"] + p {
   background-color: white;
   border-radius: 20px;
   padding-top: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 #top {
   display: grid;
@@ -424,7 +423,6 @@ input[type="search"] + p {
   background: var(--changeColor);
   border: 1px solid #ffffff;
   box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .store-content {
@@ -525,7 +523,7 @@ article {
   width: auto; 
   height:1.2em;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;
   color: white;
   justify-content: end;
 }
@@ -635,7 +633,6 @@ footer {
   background-color: var(--changeColor);
   border-radius: 20px;
   margin-bottom: 20px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 .quantity > div {
   width: 4rem;
@@ -651,7 +648,7 @@ footer {
   border-radius: 5%;
   flex-direction: column;
   justify-content: center;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+
   padding: 30px;
 }
 .shipping1,

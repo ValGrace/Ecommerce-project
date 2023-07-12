@@ -159,10 +159,7 @@ const CheckoutPage =(props) => {
                 </div>
                {/* <p>{apiResponse}</p> */}
         </div>
-        <footer>
-            <MyFooterNav />
-            <hr className='hr-footer'></hr>
-            </footer>
+        <footer><MyFooterNav /></footer>
         </>
     )
 }

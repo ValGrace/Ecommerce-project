@@ -55,7 +55,7 @@ const MyFooterNav = () => {
                 
                  </form>
              </div>
-             
+             <hr className='hr-footer'/>
         </>
     )
 }

@@ -1,10 +1,6 @@
 import React from 'react'
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton';
 
 const MyFooterNav = () => {
     
@@ -30,32 +26,12 @@ const MyFooterNav = () => {
                  <h1>Newsletter</h1>
                  <p>Get more information about AnyPay and More Updates</p>
                  <form className="form-wrapper cf">
-                 <Paper id="subemail"
-      component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "80%" }}
-    >
-      
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Products"
-        inputProps={{ 'aria-label': 'search google maps' }}
-        
-      />
-      <Button variant="contained" sx={{backgroundColor: 'orangered'}}>
-  Subscribe
-</Button>
-      {/* <IconButton type="button" sx={{ p: '10px' }} 
-      aria-label="search"
-      
-      >
-        <button className="btn">Subscribe</button>
-      </IconButton> */}
-      
-    </Paper>
-                
+                 <label htmlFor="subemail">
+                     <input type="email" id="subemail"/>
+                     <span><button className="btn">Subscribe</button></span>
+                 </label>
                  </form>
              </div>
-             
         </>
     )
 }

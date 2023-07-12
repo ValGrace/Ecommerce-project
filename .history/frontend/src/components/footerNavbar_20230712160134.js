@@ -30,7 +30,7 @@ const MyFooterNav = () => {
                  <h1>Newsletter</h1>
                  <p>Get more information about AnyPay and More Updates</p>
                  <form className="form-wrapper cf">
-                 <Paper id="subemail"
+                 <Paper
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "80%" }}
     >
@@ -52,10 +52,13 @@ const MyFooterNav = () => {
       </IconButton> */}
       
     </Paper>
-                
+                 <label htmlFor="subemail">
+                     <input type="email" id="subemail"/>
+                     <span></span>
+                 </label>
                  </form>
              </div>
-             
+             <hr className='hr-footer'/>
         </>
     )
 }
