@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton';
+
 
 const MyFooterNav = () => {
     
@@ -29,7 +29,7 @@ const MyFooterNav = () => {
              <div className="Newsletter">
                  <h1>Newsletter</h1>
                  <p>Get more information about AnyPay and More Updates</p>
-                 <form className="form-wrapper cf">
+                 <div className="form-wrapper cf">
                  <Paper id="subemail"
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "80%" }}
@@ -53,7 +53,7 @@ const MyFooterNav = () => {
       
     </Paper>
                 
-                 </form>
+                 </div>
              </div>
              
         </>

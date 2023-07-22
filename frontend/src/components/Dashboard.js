@@ -28,7 +28,7 @@ const MyDashBoard = () => {
     const navigate = useHistory()
     const [searchResults, setSearchResults] = useState([])
     const [searchInput, setSearchinput] = useState()
-    const [mapLimit, setMapLimit] = useState(3)
+    const [mapLimit] = useState(3)
     const searchItems = (searchTerm) => {
         setSearchinput(searchTerm)
         console.log(productdata)

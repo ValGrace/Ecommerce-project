@@ -674,19 +674,24 @@ footer {
 .airtime {
   display: flex;
   gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .brands {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   width: 10em;
   height: 10em;
-  position: relative;
-  left: 30%;
+  /* position: relative; */
+  /* left: 30%; */
+  box-shadow: rgba(70, 65, 63, 0.205) 0.5px 1.95px 2.6px;
 }
 .brands > img {
   width: 100%;
-  height: 50%;
+  height: 100%;
 }
 
 .air {
@@ -900,11 +905,12 @@ table tr {
   .product-item {
     position: relative;
     width: 50vw;
-    font-size: 1.4rem;
+    font-size: 0.8rem;
   }
 
   #recimg {
-    width: 40%;
+    /* width: 40%; */
+    height: 35%;
   }
   .gaming-section {
     width: 100vw;
@@ -983,11 +989,11 @@ table tr {
   #mobile {
     width: 10em;
   }
-  .airtime {
+  /* .airtime {
     width: 100vw;
     position: relative;
     left: -30%;
-  }
+  } */
   .air {
     position: relative;
     width: 100vw;

@@ -53,7 +53,7 @@ const CheckoutPage =(props) => {
                 amount: window.localStorage.getItem('total-price')
             }),
             headers: {
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',             
+                'Access-Control-Allow-Origin': '*',             
                 'Content-Type': 'application/json',
                
             }
@@ -61,7 +61,7 @@ const CheckoutPage =(props) => {
         // fetch("http://localhost:5000/dev/mpesa")
         // .then(res => res.text())
         fetch('http://localhost:5000/dev/mpesa', postResponse)
-              .then(() => console.log('Data successfully sent'))
+              .then(res => console.log(res))
               .catch(err => {
                console.error(err)
               })
@@ -155,7 +155,7 @@ const CheckoutPage =(props) => {
                     <h5>Purchase all products in cart</h5>
                 <strong>Total ksh.{getTotal().totalPrice}</strong>
                 {/* <button className='store-btn' onClick={detailsConfirm}>Confirm Purchase</button> */}
-                <button className="store-btn" onClick={callResponse}>Buy With Mpesa</button>
+                <button className="store-btn" onClick={callResponse}>Pay With Mpesa</button>
                 </div>
                {/* <p>{apiResponse}</p> */}
         </div>
