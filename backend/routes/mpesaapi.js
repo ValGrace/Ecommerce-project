@@ -11,35 +11,6 @@ let auth_token = [];
 const consumerKey = process.env.consumerKey
 const consumerSecret = process.env.consumerSecret
 
-// function startInterval(seconds) {
-//     setInterval(function () {getOauthToken() }, seconds * 1000)
-// }
-
-// const getOauthToken = () => {
-    
-    
-//     const OauthTokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"    
-    
-    // let buffer = new Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64') 
-    // const auth = `Basic ${buffer}`
-    
-//      axios.get(url, {
-//             auth: {
-//                 'username': consumerKey,
-//                 'password': consumerSecret
-//              },  
-   
-//         }).then((response) => {
-//         var gettoken = response.data.access_token
-//         //    console.log(response.data.access_token)
-//            console.log(gettoken)
-           
-//         })
-//         .catch((err) => {
-//             console.log(err)
-//         })
-       
-// } 
 
 function twoDigits(n) {
     return n < 10 ? '0' + n : n 
@@ -98,7 +69,7 @@ function Lipa_na_mpesa(req, res, next) {
             {
              headers: { 
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${response.data.access_token}`,
+                "Authorization": `Bearer ${response.data.access_token}`                
                                 
             }
         }
@@ -129,3 +100,43 @@ function Lipa_na_mpesa(req, res, next) {
 
 
 module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+// function startInterval(seconds) {
+//     setInterval(function () {getOauthToken() }, seconds * 1000)
+// }
+
+// const getOauthToken = () => {
+    
+    
+//     const OauthTokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"    
+    
+    // let buffer = new Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64') 
+    // const auth = `Basic ${buffer}`
+    
+//      axios.get(url, {
+//             auth: {
+//                 'username': consumerKey,
+//                 'password': consumerSecret
+//              },  
+   
+//         }).then((response) => {
+//         var gettoken = response.data.access_token
+//         //    console.log(response.data.access_token)
+//            console.log(gettoken)
+           
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+       
+// } 

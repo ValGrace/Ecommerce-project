@@ -1,0 +1,47 @@
+org: valgrace02
+app: anypay
+service: anypay-service
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+useDotenv: true
+
+# credentials: C:\Users\Hp 15\Downloads\online-store-365203-7b9efc0e44b8.json
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+  - serverless-ngrok-tunnel
+
+functions:
+  app:
+    handler: bin/www.handler
+    events: 
+      - http:
+          path: /
+          method: ANY
+          cors: true 
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true 
+      
+
+custom:
+  dotenv:
+    path: .env  
+    include: '*'
+  serverless-offline:
+    httpPort: 5000 
+  ngrokTunnel:
+    envPath: .env
+    tunnels:
+      - port: 5000
+        envProp: 'API_GATEWAY'   
+                 
+           
+
+  
