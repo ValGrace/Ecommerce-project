@@ -5,19 +5,21 @@
 }
 body {
   margin: 0;
-
+  
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   background-color: var(--background);
+  
 }
+
 .landing-page {
   width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} 
 
 .top-bar {
   width: 100vw;
@@ -42,7 +44,9 @@ body {
 
 .app-logo {
   display: flex;
+  margin-left: 0.5rem;
   align-items: flex-end;
+  text-decoration: wavy;
 }
 #pages,
 #account {
@@ -52,10 +56,11 @@ body {
 }
 
 #pages h3 {
-  margin-right: 20px;
+  margin-right: 4.9rem;
 
   color: rgb(44, 44, 44);
 }
+
 .mylink {
   text-decoration: none;
 }
@@ -147,7 +152,7 @@ input {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url("https://images.unsplash.com/photo-1581351123004-757df051db8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzl8fGdhbWluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
     #ffffff;
-  border-radius: 72px;
+  border-radius: 50px;
   width: 90vw;
   height: auto;
   display: flex;
@@ -155,6 +160,7 @@ input {
   align-items: center;
   padding: 1.6em;
   background-size: cover;
+  margin-left: 0.4rem;
   margin-bottom: 0.9rem;
 }
 
@@ -308,6 +314,7 @@ input[type="search"] + p {
   background-color: white;
   border-radius: 20px;
   padding-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 #top {
   display: grid;
@@ -417,6 +424,7 @@ input[type="search"] + p {
   background: var(--changeColor);
   border: 1px solid #ffffff;
   box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .store-content {
@@ -627,6 +635,7 @@ footer {
   background-color: var(--changeColor);
   border-radius: 20px;
   margin-bottom: 20px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 .quantity > div {
   width: 4rem;
@@ -642,7 +651,7 @@ footer {
   border-radius: 5%;
   flex-direction: column;
   justify-content: center;
-
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
   padding: 30px;
 }
 .shipping1,
@@ -665,19 +674,24 @@ footer {
 .airtime {
   display: flex;
   gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .brands {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   width: 10em;
   height: 10em;
-  position: relative;
-  left: 30%;
+  /* position: relative; */
+  /* left: 30%; */
+  box-shadow: rgba(70, 65, 63, 0.205) 0.5px 1.95px 2.6px;
 }
 .brands > img {
   width: 100%;
-  height: 50%;
+  height: 100%;
 }
 
 .air {
@@ -731,8 +745,12 @@ footer {
   margin: 0.4rem;
   border-radius: 50%;
 }
-.page-navigate > h3 {
+.page-navigate h3 {
   color: var(--changeColor);
+}
+
+.hr-footer {
+  width: 95%;
 }
 .details-component {
   padding: 40px;
@@ -887,11 +905,12 @@ table tr {
   .product-item {
     position: relative;
     width: 50vw;
-    font-size: 1.4rem;
+    font-size: 0.8rem;
   }
 
   #recimg {
-    width: 40%;
+    /* width: 40%; */
+    height: 35%;
   }
   .gaming-section {
     width: 100vw;
@@ -970,11 +989,11 @@ table tr {
   #mobile {
     width: 10em;
   }
-  .airtime {
+  /* .airtime {
     width: 100vw;
     position: relative;
     left: -30%;
-  }
+  } */
   .air {
     position: relative;
     width: 100vw;

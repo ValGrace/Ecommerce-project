@@ -5,10 +5,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors")
+
 var indexRouter = require('./routes/index');
 var tokenRouter = require('./routes/confirmToken');
 var mpesaRouter = require('./routes/mpesaapi')
-
+var airtimeRouter = require('./routes/airtime')
 // var bodyParser = require('body-parser')
 var app = express();
 
@@ -17,11 +18,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'https://anypay-28455.web.app'
 }))
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser.urlencoded({ extended: false}))
@@ -29,13 +30,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/v2/api/details', indexRouter);
 app.use('/v2/api/confirmUrl', tokenRouter);
 app.use('/mpesa', mpesaRouter)
+app.use('/airtime', airtimeRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
+  const response = {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*",
+      "Content-Type": "application/json"
+    }
+  }
+ 
+ 
   next();
 });
 // error handler

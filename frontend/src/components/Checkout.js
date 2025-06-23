@@ -53,7 +53,7 @@ const CheckoutPage =(props) => {
                 amount: window.localStorage.getItem('total-price')
             }),
             headers: {
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',             
+                'Access-Control-Allow-Origin': '*',             
                 'Content-Type': 'application/json',
                
             }
@@ -61,7 +61,7 @@ const CheckoutPage =(props) => {
         // fetch("http://localhost:5000/dev/mpesa")
         // .then(res => res.text())
         fetch('http://localhost:5000/dev/mpesa', postResponse)
-              .then(() => console.log('Data successfully sent'))
+              .then(res => console.log(res))
               .catch(err => {
                console.error(err)
               })
@@ -116,7 +116,7 @@ const CheckoutPage =(props) => {
         </div>
         <div className="payment">
             <div className="payment1">
-            <h1>Payment method</h1>
+            <h3>Payment method</h3>
             <div onClick={myClick2}>{makePayment ? <FaAngleUp />:<FaAngleDown />}</div>
             </div>
             <div className="methods">
@@ -145,21 +145,24 @@ const CheckoutPage =(props) => {
         <div className="checkoutcart">
             <h3>Order Review</h3>
                 <hr />
-                <div className="buysingle">
+                {/* <div className="buysingle">
                 <h4>Purchase single product</h4>
                 <p>{props.match.params.descr}</p>
                 <p>&#8358;{props.match.params.price}</p>
                 <button className="store-btn">Purchase</button>
-            </div>
+            </div> */}
                 <div className="buyall">
                     <h5>Purchase all products in cart</h5>
                 <strong>Total ksh.{getTotal().totalPrice}</strong>
                 {/* <button className='store-btn' onClick={detailsConfirm}>Confirm Purchase</button> */}
-                <button className="store-btn" onClick={callResponse}>Buy With Mpesa</button>
+                <button className="store-btn" onClick={callResponse}>Pay With Mpesa</button>
                 </div>
                {/* <p>{apiResponse}</p> */}
         </div>
-        <footer><MyFooterNav /></footer>
+        <footer>
+            <MyFooterNav />
+            <hr className='hr-footer'></hr>
+            </footer>
         </>
     )
 }
