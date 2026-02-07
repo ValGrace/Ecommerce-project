@@ -39,10 +39,10 @@ export const categories = [
 ]
 
 export const topdeals = [
-    {id:9, image:image1, descr:"PS5 Dual Sense Wireless Controller", price:25000, deal:"15% OFF"},
-    {id:10, image:image4, descr:"PS4 Wireless Controller", price:40000, deal:"50% OFF"},
-    {id:11, image:image3, descr:"Apple Air Pod", price:25000, deal:"25% OFF"},
-    {id:12, image:image2, descr:"PS4 Wireless Controller", price:47000, deal:"30% OFF"},
+    {id:9, image:"https://m.media-amazon.com/images/I/91t16+g29KL._AC_SL1500_.jpg", descr:"ASUS 4K OLED Gaming Monitor", price:25000, deal:"15% OFF"},
+    {id:10, image:"https://m.media-amazon.com/images/I/717NCwqQX2L._AC_SL1200_.jpg", descr:"Skytech Gaming Azure 3 Desktop PC", price:40000, deal:"50% OFF"},
+    {id:11, image:"https://m.media-amazon.com/images/I/71S-pQNQyIL._SL1500_.jpg", descr:"Gaming Keyboard and Mouse and Mouse pad and Gaming Headset", price:25000, deal:"25% OFF"},
+    {id:12, image:"https://m.media-amazon.com/images/I/6109I55WcnL._AC_SL1500_.jpg", descr:"SUPFINE Magnetic for iPhone SE Case", price:47000, deal:"30% OFF"},
 ]
 
 export const mygames = [
