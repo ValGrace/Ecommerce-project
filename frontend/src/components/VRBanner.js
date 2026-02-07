@@ -2,7 +2,7 @@ import vrImage from '../StoreComponents/images/vr_cleaned.png';
 
 function VrBanner() {
   return (
-    <section className="w-full z-50">
+    <div className="w-full z-50">
       <div className="max-w-[1400px] mx-auto px-6 py-8">
         <div className="relative h-[280px] rounded-[32px] overflow-visible bg-gradient-to-r from-[#18206F] via-[#17255A] via-[#D88373] to-[#BD1E1E]">
           {/* Content Container */}
@@ -32,7 +32,7 @@ function VrBanner() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
