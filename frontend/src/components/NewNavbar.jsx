@@ -7,7 +7,6 @@ import {
   User,
   Heart,
   ChevronDown,
-  Phone,
   Menu,
   Truck,
   Clock,
@@ -26,8 +25,8 @@ import { SearchModal } from './SearchModal';
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  
-  
+
+
 
   const cart = useSelector((state) => state.cart);
 
@@ -38,7 +37,7 @@ export default function Navbar() {
     });
     return total;
   };
- 
+
   return (
     <nav className="w-full">
       {/* Top Bar - Desktop Only */}
@@ -92,8 +91,8 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="Search products"
-                onClick={() => setSearchModalOpen(true)}                
-              
+                onClick={() => setSearchModalOpen(true)}
+
                 className="flex-1 px-5 py-3 bg-transparent text-black text-sm placeholder-gray-400 focus:outline-none border-[#b6b6b596] shadow-xl"
               />
               <div className="relative flex items-center pr-3">
@@ -115,7 +114,7 @@ export default function Navbar() {
             {/* Right Actions */}
             <div className="flex items-center gap-4">
               {/* Need Help - Desktop Only */}
-              
+
 
               {/* Account - Desktop */}
               <Link to="/login" className="hidden md:flex items-center gap-2 hover:text-[#A40E4C] transition">

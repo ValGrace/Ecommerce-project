@@ -44,12 +44,7 @@ const MyFooterNav = () => {
       <Button variant="contained" sx={{backgroundColor: 'orangered'}}>
   Subscribe
 </Button>
-      {/* <IconButton type="button" sx={{ p: '10px' }} 
-      aria-label="search"
-      
-      >
-        <button className="btn">Subscribe</button>
-      </IconButton> */}
+    
       
     </Paper>
                 

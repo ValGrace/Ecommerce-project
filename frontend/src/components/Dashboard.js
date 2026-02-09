@@ -1,18 +1,13 @@
 import { useState } from 'react'
-import BestItems from '../StoreComponents/recommended'
 import { categories, phones, topdeals, mygames, laptops, recharge } from '../StoreComponents/recommended'
-import MyFooterNav from './footerNavbar'
-import { FiShoppingBag } from 'react-icons/fi'
 
 import { Link } from 'react-router-dom'
 import VrBanner from './VRBanner'
 import { useAuth } from '../Context/AuthContext'
 
-import { productdata } from '../StoreComponents/images/StorePages/StoreContainer'
 import { useHistory } from 'react-router-dom'
 const MyDashBoard = () => {
-    // const [searchItem, setSearchItem] = useState('')
-    const [bestProducts] = useState(BestItems)
+    
     const [chooseItem] = useState(categories)
     // const [vrbanner] = useState(VRBanner)
     const [newDeals] = useState(topdeals)
@@ -22,18 +17,8 @@ const MyDashBoard = () => {
     const [rechargePhone] = useState(recharge)
     const { currentUser } = useAuth()
     const navigate = useHistory()
-    const [searchResults, setSearchResults] = useState([])
-    const [searchInput, setSearchinput] = useState()
-    const [mapLimit] = useState(3)
-    const searchItems = (searchTerm) => {
-        setSearchinput(searchTerm)
-        console.log(productdata)
-        const filteredData = productdata.filter((item) => {
-            return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-        })
-        setSearchResults(filteredData)
-        console.log(searchResults)
-    }
+   
+   
 
     // const addToCart = (topdeals) => {
     //     console.log('we are in addTocart')
@@ -153,10 +138,10 @@ const MyDashBoard = () => {
                         })}
                     </div>
                 </div>
-                <footer className="welcome">
+                {/* <footer className="welcome">
                     <MyFooterNav />
                     <hr className='hr-footer' />
-                </footer>
+                </footer> */}
 
             </>
         )

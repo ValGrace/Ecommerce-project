@@ -2,7 +2,7 @@ import './App.css';
 
 import EntryPage from './components/LandingPage';
 import EntryNavBar from './components/NewNavbar'
-
+import { Footer } from './components/footer';
 
 function App() {
   
@@ -10,6 +10,7 @@ function App() {
     <div className="App">
      <EntryNavBar /> 
     <EntryPage />
+    <Footer />
     
     </div>
     
