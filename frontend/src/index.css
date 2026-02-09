@@ -598,19 +598,7 @@ article {
   justify-content: end;
 }
 
-footer {
-  width: 90vw;
-  height: 20rem;
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  background-color: #141b22;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
 
-/* shoppingcart */
 
 .social-accounts {
   display: flex;
