@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
     <nav className="w-full">
       {/* Top Bar - Desktop Only */}
-      <div className="hidden md:block bg-[#BD1E1E] text-[#F5E2C8] text-sm">
+      <div className="hidden md:block bg-[#17255A] text-[#F5E2C8] text-sm">
         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
@@ -67,7 +67,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="bg-[#F5E2C8] text-[#17255A]">
+      <div className="bg-[#17255A] text-[#F5E2C8]">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Mobile Menu Button */}

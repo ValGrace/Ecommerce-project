@@ -207,7 +207,7 @@ export function Footer() {
           </div>
 
           {/* Newsletter Section */}
-          <div className="sm:col-span-2 md:col-span-1 lg:col-span-2 xl:col-span-3">
+          <div className="sm:col-span-2 md:col-span-1 lg:col-span-3 xl:col-span-3">
             <div className="bg-[#18206F] rounded-2xl p-5 md:p-6 lg:p-8">
               <span className="text-[#BD1E1E] text-xs font-bold uppercase tracking-wider">
                 Newsletter

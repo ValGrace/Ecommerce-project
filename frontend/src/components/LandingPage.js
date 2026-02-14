@@ -10,7 +10,7 @@ import { AuthProvider } from '../Context/AuthContext'
 import AllProductsPage from './AllProducts';
 import Airtime from './Buy Airtime'
 import Orders from "../Admin/Pages/Orders"
-
+import { ProductSection } from './ProductSection'
 import Inventory from "../Admin/Pages/Inventory";
 import Customers from "../Admin/Pages/Customers";
 import AdminHome from "../Admin/Pages/AdminHome";
@@ -49,7 +49,8 @@ const EntryPage = () => {
                 <Route path="/mystore" component={MyStore} />
                 
                  {/* <Route path="/product" component={MakePurchase} /> */}
-                 <Route exact path="/prod" component={AllProductsPage} />  
+                 {/* <Route exact path="/prod" component={AllProductsPage} />   */}
+                 <Route exact path="/prod" component={ProductSection} />
                  <Route path="/airtime" component={Airtime} />
                  <Route exact path="/checkout" component={CheckoutPage} />
                
