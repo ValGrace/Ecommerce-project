@@ -549,12 +549,12 @@ export function ProductSection() {
   });
 
   return (
-    <div className="bg-[#D88373] min-h-screen py-12">
+    <div className="bg-[#17265ab6] min-h-screen py-12">
       <div className="max-w-[1600px] mx-auto px-6">
-        <div className="flex gap-8">
+        <div className="flex flex-wrap gap-8">
           {/* Sidebar */}
           <div className="w-64 flex-shrink-0">
-            <div className="bg-[#141414] rounded-lg p-6 sticky top-6">
+            <div className="bg-[#17265A] rounded-lg p-6 sticky top-6">
               {/* Filters Header */}
               <div className="flex items-center gap-2 mb-6">
                 <SlidersHorizontal className="w-5 h-5 text-white" />
