@@ -1,99 +1,190 @@
-import React, {useState} from "react";
-import RealityPage, {VirtualReality} from "./virtualReal";
-import SpeakersStore, {speakers} from "./speakers";
-import LaptopPage, {LaptopStore} from "./laptops";
-import GamingPage, {Controller} from "./gaming";
-import PlantsPage, {PlantsStore} from "./plants";
-import PhonesPage, {PhonesStore} from "./phones";
+import React, { useState } from "react";
+import RealityPage, { VirtualReality } from "./virtualReal";
+import SpeakersStore, { speakers } from "./speakers";
+import LaptopPage, { LaptopStore } from "./laptops";
+import GamingPage, { Controller } from "./gaming";
+import PlantsPage, { PlantsStore } from "./plants";
+import PhonesPage, { PhonesStore } from "./phones";
+import { Search, SlidersHorizontal, Heart, ChevronDown, X } from 'lucide-react';
 
-import { ShoppingCartOutlined} from "@ant-design/icons"
-import {  FloatButton } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons"
+import { FloatButton } from "antd";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export const productdata = VirtualReality.concat(speakers).concat(LaptopStore).concat(Controller).concat(PlantsStore).concat(PhonesStore)
 const MyStore = () => {
-    
-    return (
-        <div className="entireStore">
-            
-            <article>
-                <StoreProducts />
-            </article>
-        </div>
-    )
+
+  return (
+    <div className="entireStore">
+
+      <article>
+        <StoreProducts />
+      </article>
+    </div>
+  )
 }
 const StoreProducts = () => {
-    const [virtualStore] = useState(VirtualReality)
-    const [speakerItem] = useState(speakers)
-    const [singlePlant] = useState(PlantsStore)
-    const [myLaptop] = useState(LaptopStore)
-    const [gameController] = useState(Controller)
-    const [singlePhone] = useState(PhonesStore)
-    const cart = useSelector((state) => state.cart)
-    
-    const getTotalProducts = () => {
-        let total = 0
-        cart.forEach(item =>{
-            total += item.quantity
-        })
-        return total
-    }
-    
-    return (
-        <>
-        <div className="bg-[#f5e2c889] min-h-screen py-12">
-      <div className="max-w-[1600px] mx-auto px-6">
-        <div className="flex flex-wrap gap-8">
-          {/* Sidebar */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-[#F5E2C8] rounded-lg p-6 sticky top-6">
-              {/* Filters Header */}
-              <div className="flex items-center gap-2 mb-6">
-                <SlidersHorizontal className="w-5 h-5 text-black" />
-                <h2 className="text-white font-semibold">Filters</h2>
-              </div>
+  const [virtualStore] = useState(VirtualReality)
+  const [speakerItem] = useState(speakers)
+  const [singlePlant] = useState(PlantsStore)
+  const [myLaptop] = useState(LaptopStore)
+  const [gameController] = useState(Controller)
+  const [singlePhone] = useState(PhonesStore)
+  const products = VirtualReality.concat(speakers).concat(LaptopStore).concat(Controller).concat(PlantsStore).concat(PhonesStore)
+  const cart = useSelector((state) => state.cart)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [priceRange, setPriceRange] = useState([0, 2000])
+  const [selectedSize, setSelectedSize] = useState("")
+  const categories = [
+    { name: 'Premium Audio', count: 28 },
+    { name: 'Wearable Tech', count: 45 },
+    { name: 'Gaming', count: 34 },
+    { name: 'Computing', count: 67 },
+    { name: 'Mobile Devices', count: 52 },
+    { name: 'Plants', count: 28 }
+  ];
 
-              {/* Search */}
-              <div className="relative mb-8">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#0A0A0A] border border-gray-800 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#00D991]"
-                />
-              </div>
+  const getTotalProducts = () => {
+    let total = 0
+    cart.forEach(item => {
+      total += item.quantity
+    })
+    return total
+  }
+ const [activeFilters, setActiveFilters] = useState(['Price range: $50 - 1500', 'Size: Medium', 'Luxury']);
+ const removeFilter = (filter) => {
+    setActiveFilters(prev => prev.filter(f => f !== filter));
+  };
 
-              {/* Categories */}
-              <div className="mb-8">
-                <h3 className="text-[#BD1E1E] text-xs uppercase tracking-wider mb-4">Categories</h3>
-                <div className="space-y-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category.name}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className={`w-full text-left flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${
-                        selectedCategory === category.name
+  const filteredProducts = products.filter(product => {
+    if (selectedCategory && product.category !== selectedCategory) return false;
+    if (product.price < priceRange[0] || product.price > priceRange[1]) return false;
+    if (selectedSize && product.size !== selectedSize) return false;
+    if (searchQuery && !product.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    return true;
+  });
+  return (
+    <>
+
+
+      <div className="fullStore">
+        <h1>Virtual Reality</h1>
+        <div className="deals-container allproducts">
+          {virtualStore.map((vritem) => {
+            return (
+              <RealityPage key={vritem.id} {...vritem} />
+            )
+          })}
+        </div>
+      </div>
+      <div className="fullStore">
+        <h1>Speakers</h1>
+        <div className="deals-container allproducts">
+          {speakerItem.map((speaker) => {
+            return (
+              <SpeakersStore key={speaker.id} {...speaker} />
+            )
+          })}
+        </div>
+      </div>
+      <div className="fullStore">
+        <h1>Laptops</h1>
+        <div className="deals-container allproducts">
+          {myLaptop.map((screen) => {
+            return (
+              <LaptopPage key={screen.id} {...screen} />
+            )
+          })}
+        </div>
+      </div>
+      <div className="fullstore">
+        <h1>PlayStore Controllers</h1>
+        <div className="deals-container allproducts">
+          {gameController.map((game) => {
+            return (
+              <GamingPage key={game.id} {...game} />
+            )
+          })}
+        </div>
+      </div>
+
+
+      <div className="fullStore">
+        <h1>Plants Store</h1>
+        <div className="deals-container allproducts">
+          {singlePlant.map((plant) => {
+            return (
+              <PlantsPage key={plant.id} {...plant} />
+            )
+          })}
+        </div>
+      </div>
+      <div className="fullStore">
+        <h1>Phones Store</h1>
+        <div className="deals-container allproducts">
+          {singlePhone.map((phone) => {
+            return (
+              <PhonesPage key={phone.id} {...phone} />
+            )
+          })}
+        </div>
+      </div>
+
+      <Link to="/checkout"><FloatButton shape="circle" badge={{ count: getTotalProducts() || 0, color: "orangered" }} icon={<ShoppingCartOutlined style={{ right: 24 + 70 + 70 }} />} /></Link>
+
+      <div className="bg-[#f5e2c889] min-h-screen py-12">
+        <div className="max-w-[1600px] mx-auto px-6">
+          <div className="flex flex-wrap gap-8">
+            {/* Sidebar */}
+            <div className="w-64 flex-shrink-0">
+              <div className="bg-[#F5E2C8] rounded-lg p-6 sticky top-6">
+                {/* Filters Header */}
+                <div className="flex items-center gap-2 mb-6">
+                  <SlidersHorizontal className="w-5 h-5 text-black" />
+                  <h2 className="text-white font-semibold">Filters</h2>
+                </div>
+
+                {/* Search */}
+                <div className="relative mb-8">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-[#0A0A0A] border border-gray-800 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#00D991]"
+                  />
+                </div>
+
+                {/* Categories */}
+                <div className="mb-8">
+                  <h3 className="text-[#BD1E1E] text-xs uppercase tracking-wider mb-4">Categories</h3>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category.name}
+                        onClick={() => setSelectedCategory(category.name)}
+                        className={`w-full text-left flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${selectedCategory === category.name
                           ? 'text-white bg-[#1A1A1A]'
                           : 'text-gray-400 hover:text-white hover:bg-[#1A1A1A]'
-                      }`}
-                    >
-                      <span className="text-sm">
-                        {selectedCategory === category.name && '• '}
-                        {category.name}
-                      </span>
-                      <span className="text-xs text-gray-600">{category.count}</span>
-                    </button>
-                  ))}
+                          }`}
+                      >
+                        <span className="text-sm">
+                          {selectedCategory === category.name && '• '}
+                          {category.name}
+                        </span>
+                        <span className="text-xs text-gray-600">{category.count}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Price Range */}
-              <div className="mb-8">
-                <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Price</h3>
-                {/* <Slider
+                {/* Price Range */}
+                <div className="mb-8">
+                  <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Price</h3>
+                  {/* <Slider
                   value={priceRange}
                   onValueChange={setPriceRange}
                   min={0}
@@ -101,42 +192,40 @@ const StoreProducts = () => {
                   step={50}
                   className="mb-4"
                 /> */}
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-500">$</span>
-                    <span className="text-white">{priceRange[0]}</span>
-                  </div>
-                  <span className="text-gray-600">-</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-500">$</span>
-                    <span className="text-white">{priceRange[1]}</span>
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-500">$</span>
+                      <span className="text-white">{priceRange[0]}</span>
+                    </div>
+                    <span className="text-gray-600">-</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-500">$</span>
+                      <span className="text-white">{priceRange[1]}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Size */}
-              <div>
-                <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-4">Size</h3>
-                <div className="grid grid-cols-4 gap-2">
-                  {['S', 'M', 'L', 'XL'].map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`py-2 rounded-lg text-sm font-medium transition-colors ${
-                        selectedSize === size
+                {/* Size */}
+                <div>
+                  <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-4">Size</h3>
+                  <div className="grid grid-cols-4 gap-2">
+                    {['S', 'M', 'L', 'XL'].map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`py-2 rounded-lg text-sm font-medium transition-colors ${selectedSize === size
                           ? 'bg-white text-black'
                           : 'bg-[#1A1A1A] text-gray-400 hover:text-white'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                          }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Main Content */}
+               {/* Main Content */}
           <div className="flex-1">
             {/* Header */}
             <div className="mb-8">
@@ -173,127 +262,20 @@ const StoreProducts = () => {
                 </div>
               </div>
             </div>
-
-            {/* Product Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="bg-[#141414] rounded-xl overflow-hidden group hover:bg-[#1A1A1A] transition-all duration-300"
-                >
-                  <div className="relative aspect-square overflow-hidden bg-[#1A1A1A]">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <button
-                      onClick={() => toggleWishlist(product.id)}
-                      className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-all"
-                    >
-                      <Heart
-                        className={`w-5 h-5 ${
-                          wishlist.includes(product.id)
-                            ? 'fill-[#00D991] text-[#00D991]'
-                            : 'text-white'
-                        }`}
-                      />
-                    </button>
-                  </div>
-
-                  <div className="p-5">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <h3 className="text-white font-semibold mb-1">{product.name}</h3>
-                        <p className="text-gray-400 text-sm">{product.description}</p>
-                      </div>
-                      <div className="text-white font-bold ml-4">${product.price}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
 
-            {/* No Results */}
-            {filteredProducts.length === 0 && (
+          {filteredProducts.length === 0 && (
               <div className="text-center py-20">
                 <p className="text-[#BD1E1E] text-lg">No products found matching your filters</p>
               </div>
             )}
           </div>
         </div>
+
       </div>
-    </div>
-       
-        <div className="fullStore">
-                    <h1>Virtual Reality</h1>
-                    <div className="deals-container allproducts">
-                    {virtualStore.map((vritem)=>{
-                        return(
-                            <RealityPage key={vritem.id} {...vritem}/>
-                        )
-                    })}
-                    </div>
-                </div>
-                 <div className="fullStore">
-                     <h1>Speakers</h1>
-                     <div className="deals-container allproducts">
-                     {speakerItem.map((speaker)=>{
-                         return(
-                             <SpeakersStore key={speaker.id} {...speaker} />
-                         )
-                     })}
-                     </div>
-                     </div>   
-                     <div className="fullStore">
-                         <h1>Laptops</h1>
-                         <div className="deals-container allproducts">
-                         {myLaptop.map((screen)=>{
-                             return (
-                                 <LaptopPage key={screen.id} {...screen} />
-                             )
-                         })}
-                         </div>
-                     </div>
-                        <div className="fullstore">
-                            <h1>PlayStore Controllers</h1>
-                            <div className="deals-container allproducts">
-                            {gameController.map((game)=>{
-                                return (
-                                    <GamingPage key={game.id} {...game} />
-                                )
-                            })}
-                            </div>
-                        </div>
-            
-            
-            <div className="fullStore">
-                <h1>Plants Store</h1>
-                <div className="deals-container allproducts">
-                {singlePlant.map((plant)=>{
-                    return (
-                        <PlantsPage key={plant.id} {...plant} />
-                    )
-                })}
-                </div>
-            </div>
-           <div className="fullStore">
-                <h1>Phones Store</h1>
-                <div className="deals-container allproducts">
-                {singlePhone.map((phone)=>{
-                    return (
-                        <PhonesPage key={phone.id} {...phone} />
-                    )
-                })}
-                </div>
-            </div>
-            
-             <Link to="/checkout"><FloatButton shape="circle" badge={{count: getTotalProducts() || 0, color: "orangered"}} icon={<ShoppingCartOutlined style={{ right: 24 + 70 + 70 }} />} /></Link>
-                
-               
-             
-        </>
-    )
+
+    </>
+  )
 }
 
 export default MyStore

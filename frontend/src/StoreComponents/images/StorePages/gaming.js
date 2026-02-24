@@ -24,36 +24,43 @@ const GamingPage = ({id, descr, brand, image, price}) => {
     const dispatch = useDispatch()
     return (
         <>
-        <div className="singleDeal" key={id}>
-                           <div id="top">
-                               
-                           <div id="top-price"></div>
-                            <div onClick={() =>dispatch(addToCart({id, descr, image, price}))} className="shoppingbag"><FaShoppingBag/></div></div>
-                            
-                           <img src={image} alt={descr} />
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             
+                <div
+                  key={id}
+                  className="bg-[#141414] rounded-xl overflow-hidden group hover:bg-[#1A1A1A] transition-all duration-300"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-[#1A1A1A]">
+                    <img
+                      src={image}
+                      alt={descr}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <button
+                      onClick={() => dispatch(addToCart({ id, descr, image, price }))}
+                      className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-all"
+                    >
+                      <FaShoppingBag
+                        className={`w-5 h-5 fill-[#d90b00] text-[#d91d00]`}
                            
-                           
-                           <h5>{descr}</h5>
-                           <h5><span >ksh </span>{price}</h5>
-                           
-                          
-                           </div>
-        </>
-        
-                // <div className="store-container" key={id}> 
-                //     <div className="store-image">
-                //         <img src={image} alt={descr} />
-                //     </div>
-                //     <div className="store-content">
-                //         <h3>{descr}</h3>
-                //         <div id="cart-section">
-                //         <h4><span>ksh</span>{price}</h4>
-                //         <span onClick={() => dispatch(addToCart({
-                //             id, descr, image, price
-                //         }))}><FaShoppingCart color="orange" size="2rem"/></span>
-                //     </div>
-                //     </div>
-                // </div>
+                       
+                      />
+                    </button>
+                  </div>
+
+                  <div className="p-5">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1">
+                        {/* <h3 className="text-white font-semibold mb-1">{brand}</h3> */}
+                        <p className="text-gray-400 text-sm">{descr}</p>
+                      </div>
+                      <div className="text-white font-bold ml-4">KES{price}</div>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+            </>
             )
      
        
