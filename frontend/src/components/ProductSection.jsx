@@ -549,15 +549,15 @@ export function ProductSection() {
   });
 
   return (
-    <div className="bg-[#17265ab6] min-h-screen py-12">
+    <div className="bg-[#f5e2c889] min-h-screen py-12">
       <div className="max-w-[1600px] mx-auto px-6">
         <div className="flex flex-wrap gap-8">
           {/* Sidebar */}
           <div className="w-64 flex-shrink-0">
-            <div className="bg-[#17265A] rounded-lg p-6 sticky top-6">
+            <div className="bg-[#F5E2C8] rounded-lg p-6 sticky top-6">
               {/* Filters Header */}
               <div className="flex items-center gap-2 mb-6">
-                <SlidersHorizontal className="w-5 h-5 text-white" />
+                <SlidersHorizontal className="w-5 h-5 text-black" />
                 <h2 className="text-white font-semibold">Filters</h2>
               </div>
 

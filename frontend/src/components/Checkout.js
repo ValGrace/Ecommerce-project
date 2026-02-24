@@ -83,7 +83,6 @@ const CheckoutPage =(props) => {
     }
     return (
         <>
-        <MyNavbar />
         <div className="cart__left">
             <div>
                 <h3>Shopping cart</h3>

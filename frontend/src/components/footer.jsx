@@ -20,7 +20,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 xl:gap-16">
           {/* Left Section - Logo & Description */}
-          <div className="sm:col-span-2 md:col-span-4 lg:col-span-4 xl:col-span-3">
+          <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-3">
             <div className="flex items-center mb-4">
               <img
                 src={navbarImage}
@@ -238,17 +238,17 @@ export function Footer() {
         </div>
 
         {/* Tech Icons Decoration - Bottom */}
-        <div className="mt-12 md:mt-16 lg:mt-20 mb-8 md:mb-10 lg:mb-12 flex items-center justify-center gap-6 md:gap-8 lg:gap-12 opacity-20">
+        {/* <div className="mt-12 md:mt-16 lg:mt-20 mb-8 md:mb-10 lg:mb-12 flex items-center justify-center gap-6 md:gap-8 lg:gap-12 opacity-20">
           <div className="w-16 h-16 border-2 border-[#FCF6EE] rounded-lg flex items-center justify-center rotate-12">
             <Cpu size={32} className="text-[#FCF6EE]" />
           </div>
           <div className="w-20 h-20 border-2 border-[#FCF6EE] rounded-full flex items-center justify-center">
-            <Zap size={40} className="text-[#FCF6EE]" />
+            <Zap size={40} className="text-[#ff9100]" />
           </div>
           <div className="w-16 h-16 border-2 border-[#FCF6EE] rounded-lg flex items-center justify-center -rotate-12">
             <Shield size={32} className="text-[#FCF6EE]" />
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
         <div className="pt-6 md:pt-8 lg:pt-10 border-t border-gray-800">

@@ -5,12 +5,10 @@ import LaptopPage, {LaptopStore} from "./laptops";
 import GamingPage, {Controller} from "./gaming";
 import PlantsPage, {PlantsStore} from "./plants";
 import PhonesPage, {PhonesStore} from "./phones";
-import MyNavbar from "../../../components/navbar";
 
 import { ShoppingCartOutlined} from "@ant-design/icons"
 import {  FloatButton } from "antd";
 import { useSelector } from "react-redux";
-import MyFooterNav from "../../../components/footerNavbar";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export const productdata = VirtualReality.concat(speakers).concat(LaptopStore).concat(Controller).concat(PlantsStore).concat(PhonesStore)
@@ -44,7 +42,189 @@ const StoreProducts = () => {
     
     return (
         <>
-        <MyNavbar />
+        <div className="bg-[#f5e2c889] min-h-screen py-12">
+      <div className="max-w-[1600px] mx-auto px-6">
+        <div className="flex flex-wrap gap-8">
+          {/* Sidebar */}
+          <div className="w-64 flex-shrink-0">
+            <div className="bg-[#F5E2C8] rounded-lg p-6 sticky top-6">
+              {/* Filters Header */}
+              <div className="flex items-center gap-2 mb-6">
+                <SlidersHorizontal className="w-5 h-5 text-black" />
+                <h2 className="text-white font-semibold">Filters</h2>
+              </div>
+
+              {/* Search */}
+              <div className="relative mb-8">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-[#0A0A0A] border border-gray-800 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#00D991]"
+                />
+              </div>
+
+              {/* Categories */}
+              <div className="mb-8">
+                <h3 className="text-[#BD1E1E] text-xs uppercase tracking-wider mb-4">Categories</h3>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category.name}
+                      onClick={() => setSelectedCategory(category.name)}
+                      className={`w-full text-left flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${
+                        selectedCategory === category.name
+                          ? 'text-white bg-[#1A1A1A]'
+                          : 'text-gray-400 hover:text-white hover:bg-[#1A1A1A]'
+                      }`}
+                    >
+                      <span className="text-sm">
+                        {selectedCategory === category.name && '• '}
+                        {category.name}
+                      </span>
+                      <span className="text-xs text-gray-600">{category.count}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Price Range */}
+              <div className="mb-8">
+                <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Price</h3>
+                {/* <Slider
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  min={0}
+                  max={2000}
+                  step={50}
+                  className="mb-4"
+                /> */}
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500">$</span>
+                    <span className="text-white">{priceRange[0]}</span>
+                  </div>
+                  <span className="text-gray-600">-</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500">$</span>
+                    <span className="text-white">{priceRange[1]}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Size */}
+              <div>
+                <h3 className="text-gray-400 text-xs uppercase tracking-wider mb-4">Size</h3>
+                <div className="grid grid-cols-4 gap-2">
+                  {['S', 'M', 'L', 'XL'].map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`py-2 rounded-lg text-sm font-medium transition-colors ${
+                        selectedSize === size
+                          ? 'bg-white text-black'
+                          : 'bg-[#1A1A1A] text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="mb-8">
+              <h1 className="text-white text-4xl font-bold mb-6">{selectedCategory}</h1>
+
+              {/* Active Filters */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {activeFilters.map((filter, index) => (
+                    <div
+                      key={index}
+                      className="bg-[#1A1A1A] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2"
+                    >
+                      <span>{filter}</span>
+                      <button
+                        onClick={() => removeFilter(filter)}
+                        className="hover:text-[#00D991] transition-colors"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <button className="text-gray-400 hover:text-white text-sm flex items-center gap-2 transition-colors">
+                    Default Sorting
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <button className="text-gray-400 hover:text-white text-sm flex items-center gap-2 transition-colors">
+                    Categories
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Product Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="bg-[#141414] rounded-xl overflow-hidden group hover:bg-[#1A1A1A] transition-all duration-300"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-[#1A1A1A]">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <button
+                      onClick={() => toggleWishlist(product.id)}
+                      className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-all"
+                    >
+                      <Heart
+                        className={`w-5 h-5 ${
+                          wishlist.includes(product.id)
+                            ? 'fill-[#00D991] text-[#00D991]'
+                            : 'text-white'
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+                  <div className="p-5">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold mb-1">{product.name}</h3>
+                        <p className="text-gray-400 text-sm">{product.description}</p>
+                      </div>
+                      <div className="text-white font-bold ml-4">${product.price}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* No Results */}
+            {filteredProducts.length === 0 && (
+              <div className="text-center py-20">
+                <p className="text-[#BD1E1E] text-lg">No products found matching your filters</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+       
         <div className="fullStore">
                     <h1>Virtual Reality</h1>
                     <div className="deals-container allproducts">
@@ -111,7 +291,7 @@ const StoreProducts = () => {
              <Link to="/checkout"><FloatButton shape="circle" badge={{count: getTotalProducts() || 0, color: "orangered"}} icon={<ShoppingCartOutlined style={{ right: 24 + 70 + 70 }} />} /></Link>
                 
                
-             <footer><MyFooterNav /></footer>  
+             
         </>
     )
 }
