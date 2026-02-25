@@ -49,12 +49,12 @@ const StoreProducts = () => {
 
 
       const stores = [
-        { title:"Virtual Reality", data: virtualStore, Component: RealityPage },
-        { title:"Speakers", data: speakerItem, Component: SpeakersStore },
-        { title:"Laptops", data: myLaptop, Component: LaptopPage },
-        { title:"PlayStore Controllers", data: gameController, Component: GamingPage },
-        { title:"Plants Store", data: singlePlant, Component: PlantsPage },
-        { title:"Phones Store", data: singlePhone, Component: PhonesPage },
+        { title:"Wearable Tech", data: virtualStore, Component: RealityPage },
+        { title:"Premium Audio", data: speakerItem, Component: SpeakersStore },
+        { title:"Computing", data: myLaptop, Component: LaptopPage },
+        { title:"Gaming", data: gameController, Component: GamingPage },
+        { title:"Plants", data: singlePlant, Component: PlantsPage },
+        { title:"Mobile Devices", data: singlePhone, Component: PhonesPage },
       ]
 
 
@@ -71,10 +71,10 @@ const StoreProducts = () => {
   };
 
   const filteredProducts = stores.filter(product => {
-    if (selectedCategory && product.category !== selectedCategory) return false;
+    if (selectedCategory && product.title !== selectedCategory) return false;
     if (product.price < priceRange[0] || product.price > priceRange[1]) return false;
     if (selectedSize && product.size !== selectedSize) return false;
-    if (searchQuery && !product.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    // if (searchQuery && !product.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
   return (
@@ -274,9 +274,9 @@ const StoreProducts = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {filteredProducts.map(({ title, data, Component }) => (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" key={title}>
+      <div  key={title}>
         <h1>{title}</h1>
         <div >
           {data.map((item) => (
@@ -286,14 +286,15 @@ const StoreProducts = () => {
       </div>
     ))}
   </div>
-            </div>
-                  
-
-          {filteredProducts.length === 0 && (
+  {filteredProducts.length === 0 && (
               <div className="text-center py-20">
                 <p className="text-[#BD1E1E] text-lg">No products found matching your filters</p>
               </div>
             )}
+            </div>
+                  
+
+          
           </div>
         </div>
 
