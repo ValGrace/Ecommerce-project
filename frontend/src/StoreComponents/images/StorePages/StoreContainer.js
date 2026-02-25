@@ -32,9 +32,10 @@ const StoreProducts = () => {
   const [gameController] = useState(Controller)
   const [singlePhone] = useState(PhonesStore)
   const products = VirtualReality.concat(speakers).concat(LaptopStore).concat(Controller).concat(PlantsStore).concat(PhonesStore)
+  
   const cart = useSelector((state) => state.cart)
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("Premium Audio")
   const [priceRange, setPriceRange] = useState([0, 2000])
   const [selectedSize, setSelectedSize] = useState("")
   const categories = [
@@ -45,6 +46,17 @@ const StoreProducts = () => {
     { name: 'Mobile Devices', count: 52 },
     { name: 'Plants', count: 28 }
   ];
+
+
+      const stores = [
+        { title:"Virtual Reality", data: virtualStore, Component: RealityPage },
+        { title:"Speakers", data: speakerItem, Component: SpeakersStore },
+        { title:"Laptops", data: myLaptop, Component: LaptopPage },
+        { title:"PlayStore Controllers", data: gameController, Component: GamingPage },
+        { title:"Plants Store", data: singlePlant, Component: PlantsPage },
+        { title:"Phones Store", data: singlePhone, Component: PhonesPage },
+      ]
+
 
   const getTotalProducts = () => {
     let total = 0
@@ -58,7 +70,7 @@ const StoreProducts = () => {
     setActiveFilters(prev => prev.filter(f => f !== filter));
   };
 
-  const filteredProducts = products.filter(product => {
+  const filteredProducts = stores.filter(product => {
     if (selectedCategory && product.category !== selectedCategory) return false;
     if (product.price < priceRange[0] || product.price > priceRange[1]) return false;
     if (selectedSize && product.size !== selectedSize) return false;
@@ -262,7 +274,20 @@ const StoreProducts = () => {
                 </div>
               </div>
             </div>
+            <div>
+    {filteredProducts.map(({ title, data, Component }) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" key={title}>
+        <h1>{title}</h1>
+        <div >
+          {data.map((item) => (
+            <Component key={item.id} {...item} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
             </div>
+                  
 
           {filteredProducts.length === 0 && (
               <div className="text-center py-20">
