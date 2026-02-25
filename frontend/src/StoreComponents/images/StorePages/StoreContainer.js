@@ -81,69 +81,7 @@ const StoreProducts = () => {
     <>
 
 
-      <div className="fullStore">
-        <h1>Virtual Reality</h1>
-        <div className="deals-container allproducts">
-          {virtualStore.map((vritem) => {
-            return (
-              <RealityPage key={vritem.id} {...vritem} />
-            )
-          })}
-        </div>
-      </div>
-      <div className="fullStore">
-        <h1>Speakers</h1>
-        <div className="deals-container allproducts">
-          {speakerItem.map((speaker) => {
-            return (
-              <SpeakersStore key={speaker.id} {...speaker} />
-            )
-          })}
-        </div>
-      </div>
-      <div className="fullStore">
-        <h1>Laptops</h1>
-        <div className="deals-container allproducts">
-          {myLaptop.map((screen) => {
-            return (
-              <LaptopPage key={screen.id} {...screen} />
-            )
-          })}
-        </div>
-      </div>
-      <div className="fullstore">
-        <h1>PlayStore Controllers</h1>
-        <div className="deals-container allproducts">
-          {gameController.map((game) => {
-            return (
-              <GamingPage key={game.id} {...game} />
-            )
-          })}
-        </div>
-      </div>
-
-
-      <div className="fullStore">
-        <h1>Plants Store</h1>
-        <div className="deals-container allproducts">
-          {singlePlant.map((plant) => {
-            return (
-              <PlantsPage key={plant.id} {...plant} />
-            )
-          })}
-        </div>
-      </div>
-      <div className="fullStore">
-        <h1>Phones Store</h1>
-        <div className="deals-container allproducts">
-          {singlePhone.map((phone) => {
-            return (
-              <PhonesPage key={phone.id} {...phone} />
-            )
-          })}
-        </div>
-      </div>
-
+      
       <Link to="/checkout"><FloatButton shape="circle" badge={{ count: getTotalProducts() || 0, color: "orangered" }} icon={<ShoppingCartOutlined style={{ right: 24 + 70 + 70 }} />} /></Link>
 
       <div className="bg-[#f5e2c889] min-h-screen py-12">
@@ -179,8 +117,8 @@ const StoreProducts = () => {
                         key={category.name}
                         onClick={() => setSelectedCategory(category.name)}
                         className={`w-full text-left flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${selectedCategory === category.name
-                          ? 'text-white bg-[#1A1A1A]'
-                          : 'text-gray-400 hover:text-white hover:bg-[#1A1A1A]'
+                          ? 'text-white bg-[#17265a]'
+                          : 'text-gray-400 hover:text-white hover:bg-[#17265a]'
                           }`}
                       >
                         <span className="text-sm">
@@ -241,7 +179,7 @@ const StoreProducts = () => {
           <div className="flex-1">
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-white text-4xl font-bold mb-6">{selectedCategory}</h1>
+              <h1 className="text-[#17265a] text-4xl font-bold mb-6">{selectedCategory}</h1>
 
               {/* Active Filters */}
               <div className="flex items-center justify-between mb-6">
@@ -276,14 +214,11 @@ const StoreProducts = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {filteredProducts.map(({ title, data, Component }) => (
-      <div  key={title}>
-        <h1>{title}</h1>
-        <div >
+      <>
           {data.map((item) => (
             <Component key={item.id} {...item} />
           ))}
-        </div>
-      </div>
+      </>
     ))}
   </div>
   {filteredProducts.length === 0 && (
