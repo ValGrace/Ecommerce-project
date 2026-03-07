@@ -83,15 +83,20 @@ const CheckoutPage =(props) => {
     }
     return (
         <>
-        <div className="cart__left">
+        <>
             <div>
-                <h3>Shopping cart</h3>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                Shopping Cart
+                 <span className="text-gray-400 text-base font-normal"> {getTotal().totalProducts} items</span>
+              </h2>
+                <div className='space-y-6 mb-8'>
                 {cart?.map((item) => (
                     <CartItem key={item.id}
                     {...item} />
                 ))}
+                </div>
             </div>
-        </div>
+        </>
         <h2>Checkout</h2>
         <div className="gateway">
         <div className="shipping">

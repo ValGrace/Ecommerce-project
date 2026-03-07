@@ -11,6 +11,7 @@ import AllProductsPage from './AllProducts';
 import Airtime from './Buy Airtime'
 import Orders from "../Admin/Pages/Orders"
 import { ProductSection } from './ProductSection'
+// import { Checkout } from './NewCheckout'
 import Inventory from "../Admin/Pages/Inventory";
 import Customers from "../Admin/Pages/Customers";
 import AdminHome from "../Admin/Pages/AdminHome";
@@ -53,6 +54,7 @@ const EntryPage = () => {
                  <Route exact path="/prod" component={ProductSection} />
                  <Route path="/airtime" component={Airtime} />
                  <Route exact path="/checkout" component={CheckoutPage} />
+                 {/* <Route path="/newcheckout" component={Checkout} /> */}
                
             </Switch>
             </AuthProvider>
