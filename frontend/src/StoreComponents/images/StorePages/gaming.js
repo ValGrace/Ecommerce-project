@@ -28,9 +28,9 @@ const GamingPage = ({id, descr, brand, image, price}) => {
              
                 <div
                   key={id}
-                  className="bg-[#141414] rounded-xl overflow-hidden group hover:bg-[#1A1A1A] transition-all duration-300"
+                  className="bg-white/20 backdrop-blur-md rounded-xl overflow-hidden group hover:bg-white/30 transition-all duration-300"
                 >
-                  <div className="relative aspect-square overflow-hidden bg-[#1A1A1A]">
+                  <div className="relative aspect-square overflow-hidden bg-white/40">
                     <img
                       src={image}
                       alt={descr}
@@ -51,10 +51,11 @@ const GamingPage = ({id, descr, brand, image, price}) => {
                   <div className="p-5">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        {/* <h3 className="text-white font-semibold mb-1">{brand}</h3> */}
-                        <p className="text-gray-400 text-sm">{descr}</p>
+                        <h3 className="text-[#d91d00] font-semibold mb-1">{brand}</h3>
+                        <p className="text-[#17265a] text-sm">{descr}</p>
                       </div>
-                      <div className="text-white font-bold ml-4">KES{price}</div>
+                      <div className="text-black font-bold ml-4">
+                        <span className='text-sm'>KES</span>{price}</div>
                     </div>
                   </div>
                 </div>
